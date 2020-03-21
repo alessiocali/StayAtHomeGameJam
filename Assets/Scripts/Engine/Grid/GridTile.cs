@@ -6,20 +6,20 @@ public class GridTile : MonoBehaviour
 {
     public struct TileIndex
     {
+        public TileIndex(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
         int X, Y;
     }
 
     private TileIndex Index;
 
-    // Start is called before the first frame update
-    void Start()
+    public Vector3 GetOccupantPosition()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // TODO
+        return Vector3.zero;
     }
 }
