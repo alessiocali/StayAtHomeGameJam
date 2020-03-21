@@ -10,7 +10,7 @@ public abstract class Occupant : MonoBehaviour
         Pending
     }
 
-    GridTile.TileIndex CurrentTileIndex;
+    protected GridTile.TileIndex CurrentTileIndex;
 
     GridTile GetCurrentTile()
     {
