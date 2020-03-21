@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4320007022989587481}
   - component: {fileID: 7552314562011678944}
   m_Layer: 0
-  m_Name: blocco_verde
-  m_TagString: Untagged
+  m_Name: blocco_alberi
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

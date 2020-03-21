@@ -10,7 +10,9 @@ public class GridMap : MonoBehaviour
 
     [SerializeField]
     // TODO: add a list of possible tiles in the map
-    public GameObject Cube = null;
+    public List<GameObject> NotWalkableCube = new List<GameObject>();
+    public List<GameObject> WalkableCube = new List<GameObject>();
+
 
     [SerializeField]
     public float GridRotation = -45f;
@@ -19,7 +21,7 @@ public class GridMap : MonoBehaviour
 
     public void GenerateGrid()
     {
-        if (!Cube)
+        if (WalkableCube.Count == 0 || NotWalkableCube.Count == 0 )
         {
             return;
         }
@@ -27,15 +29,15 @@ public class GridMap : MonoBehaviour
         int IndexOffsetX = GRID_WIDTH / 2;
         int IndexOffsetY = GRID_HEIGHT / 2;
         
-        // Generate a map around an 
-        GameObject Originator = Instantiate(Cube, new Vector3(0,0,0), Quaternion.Euler(0, GridRotation, 0), transform);
+        // Generate a map around a center
+        GameObject Originator = Instantiate(NotWalkableCube[0], new Vector3(0,0,0), Quaternion.Euler(0, GridRotation, 0), transform);
         for (int X = -IndexOffsetX; X < IndexOffsetX; ++X)
         {
 
             for (int Y = -IndexOffsetY; Y < IndexOffsetY; ++Y)
             {
                 Vector3 NextVector = Originator.transform.forward * X + Originator.transform.right * Y;
-                GameObject Current3Cube = Instantiate(Cube, NextVector, Quaternion.Euler(0, GridRotation, 0), transform);
+                GameObject Current3Cube = Instantiate(NotWalkableCube[0], NextVector, Quaternion.Euler(0, GridRotation, 0), transform);
                 Current3Cube.name = "Tile_" + (X + IndexOffsetX) + "_" + (Y + IndexOffsetY);
                 
                 GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X+IndexOffsetX, Y+IndexOffsetY);

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7792780248249984905}
   m_Layer: 0
   m_Name: blocco_supermercato
-  m_TagString: Untagged
+  m_TagString: SuperMarket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
