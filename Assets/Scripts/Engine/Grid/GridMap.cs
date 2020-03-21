@@ -42,7 +42,7 @@ public class GridMap : MonoBehaviour
                 
                 GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X+IndexOffsetX, Y+IndexOffsetY);
                 GridTile Tile = new GridTile(Current3Cube, CurrentIndex);
-
+                Tile.isWalkable = true;
                 Grid.Add(CurrentIndex, Tile);
             }
         }
@@ -105,6 +105,70 @@ public class GridMap : MonoBehaviour
     public List<GridTile> GetWalkableTilesAround(GridTile.TileIndex InIndex)
     {
         List<GridTile> Tiles = GetTilesAround(InIndex);
+
+        return Tiles.Where(x => x.isWalkable == true).ToList();
+    }
+
+    public List<GridTile> GetDiagonalTilesAround(GridTile.TileIndex InIndex)
+    {
+        List<GridTile> Tiles = new List<GridTile>();
+
+        if (!Grid.ContainsKey(InIndex))
+        {
+            return Tiles;
+        }
+
+        for (int X = InIndex.X - 1; X <= InIndex.X + 1; X+=2)
+        {
+            for (int Y = InIndex.Y - 1; Y <= InIndex.Y + 1; Y+=2)
+            {
+                if (InIndex.X == X && InIndex.Y == Y)
+                {
+                    continue;
+                }
+
+                GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X, Y);
+                if (Grid.ContainsKey(CurrentIndex))
+                {
+                    Tiles.Add(Grid[CurrentIndex]);
+                }
+            }
+        }
+        return Tiles;
+    }
+
+    public List<GridTile> GetCardinalTilesAround(GridTile.TileIndex InIndex)
+    {
+        List<GridTile> Tiles = new List<GridTile>();
+
+        if (!Grid.ContainsKey(InIndex))
+        {
+            return Tiles;
+        }
+
+        for (int X = InIndex.X - 1; X <= InIndex.X + 1; X += 2)
+        {
+            GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X, InIndex.Y);
+            if (Grid.ContainsKey(CurrentIndex))
+            {
+                Tiles.Add(Grid[CurrentIndex]);
+            }
+        }
+        for (int Y = InIndex.Y - 1; Y <= InIndex.Y + 1; Y += 2)
+        {
+            GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(InIndex.X, Y);
+            if (Grid.ContainsKey(CurrentIndex))
+            {
+                Tiles.Add(Grid[CurrentIndex]);
+            }
+        }
+
+        return Tiles;
+    }
+
+    public List<GridTile> GetCardinalAndWalkableTilesAround(GridTile.TileIndex InIndex)
+    {
+        List<GridTile> Tiles = GetCardinalTilesAround(InIndex);
 
         return Tiles.Where(x => x.isWalkable == true).ToList();
     }
