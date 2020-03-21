@@ -34,8 +34,10 @@ public class GridTile
     private Vector3 WordPosition;
 
     public GameObject TileObject { get; private set; } = null;
+
+    public Occupant Occupant { get; set; } = null;
     
-    public GridTile(GameObject InTileObject, TileIndex InIndex)
+    public GridTile (GameObject InTileObject, TileIndex InIndex)
     {
         TileObject= InTileObject;
         WordPosition = InTileObject.transform.localPosition + InTileObject.transform.forward * 0.5f + InTileObject.transform.right * 0.5f;
