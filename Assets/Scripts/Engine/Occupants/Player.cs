@@ -10,7 +10,7 @@ public class Player : Character
 
     public bool ItsMyTurn { get; private set; } = false;
 
-    public override UpdateTurnResult UpdateTurn()
+    protected override UpdateTurnResult UpdateTurnInternal()
     {
         return UpdateTurnResult.Completed;
 

@@ -10,11 +10,25 @@ public abstract class Occupant : MonoBehaviour
         Pending
     }
 
-    public GridTile.TileIndex CurrentTileIndex { get; set; }
+    private GridTile.TileIndex TileIndex;
+
+    public GridTile.TileIndex CurrentTileIndex 
+    {
+        get
+        {
+            return TileIndex;
+        }
+
+        set
+        {
+            TileIndex = value;
+            transform.position = GetCurrentTile().GetOccupantPosition();
+        }
+    }
 
     GridTile GetCurrentTile()
     {
-        return null;
+        return GameManager.Instance.GridMap.GetTileAt(CurrentTileIndex);
     }
 
     public abstract UpdateTurnResult UpdateTurn();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grandma : Character
 {
-    public override UpdateTurnResult UpdateTurn() {
+    protected override UpdateTurnResult UpdateTurnInternal() {
         List<GridTile> tilesList = GameManager.Instance.GridMap.GetTilesAround(CurrentTileIndex);
 
 
