@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridTile : MonoBehaviour
+public class GridTile
 {
     public struct TileIndex
     {
@@ -12,14 +12,24 @@ public class GridTile : MonoBehaviour
             Y = y;
         }
 
-        int X, Y;
+        public int X { get; private set; }
+        public int Y { get; private set; }
     }
 
     private TileIndex Index;
+    private Vector3 WordPosition;
 
+    public GameObject TileObject { get; private set; } = null;
+
+    public GridTile(GameObject Tile, TileIndex InIndex)
+    {
+        TileObject= Tile;
+        WordPosition = TileObject.transform.position + new Vector3(0, 0.5f, 0);
+        Index = InIndex;
+    }
+    
     public Vector3 GetOccupantPosition()
     {
-        // TODO
-        return Vector3.zero;
+        return WordPosition;
     }
 }
