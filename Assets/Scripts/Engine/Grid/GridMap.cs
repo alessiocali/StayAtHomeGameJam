@@ -10,7 +10,9 @@ public class GridMap : MonoBehaviour
 
     [SerializeField]
     // TODO: add a list of possible tiles in the map
-    public GameObject Cube = null;
+    public List<GameObject> NotWalkableCube = new List<GameObject>();
+    public List<GameObject> WalkableCube = new List<GameObject>();
+
 
     [SerializeField]
     public float GridRotation = -45f;
@@ -19,7 +21,7 @@ public class GridMap : MonoBehaviour
 
     public void GenerateGrid()
     {
-        if (!Cube)
+        if (WalkableCube.Count == 0 || NotWalkableCube.Count == 0 )
         {
             return;
         }
@@ -27,20 +29,20 @@ public class GridMap : MonoBehaviour
         int IndexOffsetX = GRID_WIDTH / 2;
         int IndexOffsetY = GRID_HEIGHT / 2;
         
-        // Generate a map around an 
-        GameObject Originator = Instantiate(Cube, new Vector3(0,0,0), Quaternion.Euler(0, GridRotation, 0), transform);
+        // Generate a map around a center
+        GameObject Originator = Instantiate(NotWalkableCube[0], new Vector3(0,0,0), Quaternion.Euler(0, GridRotation, 0), transform);
         for (int X = -IndexOffsetX; X < IndexOffsetX; ++X)
         {
 
             for (int Y = -IndexOffsetY; Y < IndexOffsetY; ++Y)
             {
                 Vector3 NextVector = Originator.transform.forward * X + Originator.transform.right * Y;
-                GameObject Current3Cube = Instantiate(Cube, NextVector, Quaternion.Euler(0, GridRotation, 0), transform);
+                GameObject Current3Cube = Instantiate(NotWalkableCube[0], NextVector, Quaternion.Euler(0, GridRotation, 0), transform);
                 Current3Cube.name = "Tile_" + (X + IndexOffsetX) + "_" + (Y + IndexOffsetY);
                 
                 GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X+IndexOffsetX, Y+IndexOffsetY);
                 GridTile Tile = new GridTile(Current3Cube, CurrentIndex);
-
+                Tile.isWalkable = true;
                 Grid.Add(CurrentIndex, Tile);
             }
         }
@@ -103,6 +105,70 @@ public class GridMap : MonoBehaviour
     public List<GridTile> GetWalkableTilesAround(GridTile.TileIndex InIndex)
     {
         List<GridTile> Tiles = GetTilesAround(InIndex);
+
+        return Tiles.Where(x => x.isWalkable == true).ToList();
+    }
+
+    public List<GridTile> GetDiagonalTilesAround(GridTile.TileIndex InIndex)
+    {
+        List<GridTile> Tiles = new List<GridTile>();
+
+        if (!Grid.ContainsKey(InIndex))
+        {
+            return Tiles;
+        }
+
+        for (int X = InIndex.X - 1; X <= InIndex.X + 1; X+=2)
+        {
+            for (int Y = InIndex.Y - 1; Y <= InIndex.Y + 1; Y+=2)
+            {
+                if (InIndex.X == X && InIndex.Y == Y)
+                {
+                    continue;
+                }
+
+                GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X, Y);
+                if (Grid.ContainsKey(CurrentIndex))
+                {
+                    Tiles.Add(Grid[CurrentIndex]);
+                }
+            }
+        }
+        return Tiles;
+    }
+
+    public List<GridTile> GetCardinalTilesAround(GridTile.TileIndex InIndex)
+    {
+        List<GridTile> Tiles = new List<GridTile>();
+
+        if (!Grid.ContainsKey(InIndex))
+        {
+            return Tiles;
+        }
+
+        for (int X = InIndex.X - 1; X <= InIndex.X + 1; X += 2)
+        {
+            GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X, InIndex.Y);
+            if (Grid.ContainsKey(CurrentIndex))
+            {
+                Tiles.Add(Grid[CurrentIndex]);
+            }
+        }
+        for (int Y = InIndex.Y - 1; Y <= InIndex.Y + 1; Y += 2)
+        {
+            GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(InIndex.X, Y);
+            if (Grid.ContainsKey(CurrentIndex))
+            {
+                Tiles.Add(Grid[CurrentIndex]);
+            }
+        }
+
+        return Tiles;
+    }
+
+    public List<GridTile> GetCardinalAndWalkableTilesAround(GridTile.TileIndex InIndex)
+    {
+        List<GridTile> Tiles = GetCardinalTilesAround(InIndex);
 
         return Tiles.Where(x => x.isWalkable == true).ToList();
     }

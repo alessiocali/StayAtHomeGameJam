@@ -2,6 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TileType
+{
+    HOUSE,
+    SUPERMARKET,
+    TREE,
+    DARKGREEN,
+    LIGHTGREEN,
+    STREET,
+    CROSSROAD,
+    PARKINGAREA
+}
+
 public class GridTile
 {
     public struct TileIndex
@@ -16,18 +28,20 @@ public class GridTile
         public int Y { get; private set; }
     }
 
-    public bool isWalkable { get; private set; } = false;
+    public bool isWalkable { get; set; } = false;
 
     public TileIndex Index { get; private set; }
     private Vector3 WordPosition;
 
     public GameObject TileObject { get; private set; } = null;
+
+    public Occupant Occupant { get; set; } = null;
     
-    public GridTile(GameObject InTileObject, TileIndex InIndex)
+    public GridTile (GameObject InTileObject, TileIndex InIndex)
     {
         TileObject= InTileObject;
         WordPosition = InTileObject.transform.localPosition + InTileObject.transform.forward * 0.5f + InTileObject.transform.right * 0.5f;
-        WordPosition += Vector3.up;
+        WordPosition += Vector3.up; 
         Index = InIndex;
     }
     
