@@ -26,7 +26,10 @@ public class GameManager : Singleton<GameManager>
         GridTile tile = GridMap.GetTileAt(index);
         Vector3 tileCenter = tile.GetOccupantPosition();
 
-        PendingSpawnedObjectsToAdd.Add(Instantiate(prefab, tileCenter, Quaternion.Euler(0, -45, 0)));
+        GameObject PrefabObject = Instantiate(prefab, tileCenter, Quaternion.Euler(0, -45, 0));
+        PrefabObject.transform.localScale /= 2;
+
+        PendingSpawnedObjectsToAdd.Add(PrefabObject);
     }
     
     private void CleanupDestroyedOccupants()
@@ -80,6 +83,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         GridMap = FindObjectOfType<GridMap>();
+        GridMap.GenerateGrid();
         SpawnStartingOccupants();
         UpdateRuntimeOccupants();   
     }

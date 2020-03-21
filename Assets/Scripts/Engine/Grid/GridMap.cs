@@ -27,27 +27,24 @@ public class GridMap : MonoBehaviour
         int IndexOffsetX = GRID_WIDTH / 2;
         int IndexOffsetY = GRID_HEIGHT / 2;
         
-        Dictionary<GridTile.TileIndex, GameObject> ListObject = new Dictionary<GridTile.TileIndex, GameObject>();
-
-        // Generate a map around the origin (0,0)
-        GameObject TODestroy = Instantiate(Cube, new Vector3(0,0,0), Quaternion.Euler(0, GridRotation, 0), transform);
+        // Generate a map around an 
+        GameObject Originator = Instantiate(Cube, new Vector3(0,0,0), Quaternion.Euler(0, GridRotation, 0), transform);
         for (int X = -IndexOffsetX; X < IndexOffsetX; ++X)
         {
 
             for (int Y = -IndexOffsetY; Y < IndexOffsetY; ++Y)
             {
-                Vector3 VVV = TODestroy.transform.forward * X + TODestroy.transform.right * Y;
-                GameObject Current3Cube = Instantiate(Cube, VVV, Quaternion.Euler(0, GridRotation, 0), transform);
+                Vector3 NextVector = Originator.transform.forward * X + Originator.transform.right * Y;
+                GameObject Current3Cube = Instantiate(Cube, NextVector, Quaternion.Euler(0, GridRotation, 0), transform);
                 Current3Cube.name = "Tile_" + (X + IndexOffsetX) + "_" + (Y + IndexOffsetY);
                 
                 GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X+IndexOffsetX, Y+IndexOffsetY);
-                ListObject.Add(CurrentIndex, Current3Cube);
                 GridTile Tile = new GridTile(Current3Cube, CurrentIndex);
 
                 Grid.Add(CurrentIndex, Tile);
             }
         }
-        GameObject.Destroy(TODestroy);
+        GameObject.Destroy(Originator);
     }
 
     public Vector3 GetFacingRotation (GridTile Current, GridTile Desider)

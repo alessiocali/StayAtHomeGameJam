@@ -16,23 +16,18 @@ public class GridTile
         public int Y { get; private set; }
     }
 
-    public bool isWalkable { get;  set; } = false;
+    public bool isWalkable { get; private set; } = false;
 
     public TileIndex Index { get; private set; }
     private Vector3 WordPosition;
 
     public GameObject TileObject { get; private set; } = null;
-
-    public bool IsWalkable { get; private set; } = true;
-
+    
     public GridTile(GameObject InTileObject, TileIndex InIndex)
     {
         TileObject= InTileObject;
-        var GO = GameObject.CreatePrimitive(PrimitiveType.Cube);
         WordPosition = InTileObject.transform.localPosition + InTileObject.transform.forward * 0.5f + InTileObject.transform.right * 0.5f;
-
-        GO.transform.position = WordPosition + Vector3.up;
-        GO.transform.localScale /= 2f;
+        WordPosition += Vector3.up;
         Index = InIndex;
     }
     
