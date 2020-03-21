@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Tree
+  - House
+  - ParkingArea
+  - Street
+  - SuperMarket
+  - LIghtGreen
+  - CrossRoad
+  - DarkGreen
   layers:
   - Default
   - TransparentFX
@@ -13,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Tile
   - 
   - 
   - 
