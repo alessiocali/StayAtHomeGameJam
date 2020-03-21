@@ -6,7 +6,7 @@ public class GridTile
 {
     public struct TileIndex
     {
-        public TileIndex(int x, int y)
+        public TileIndex (int x, int y)
         {
             X = x;
             Y = y;
@@ -21,10 +21,16 @@ public class GridTile
 
     public GameObject TileObject { get; private set; } = null;
 
-    public GridTile(GameObject Tile, TileIndex InIndex)
+    public bool IsWalkable { get; private set; } = true;
+
+    public GridTile(GameObject InTileObject, TileIndex InIndex)
     {
-        TileObject= Tile;
-        WordPosition = TileObject.transform.position + new Vector3(0, 0.5f, 0);
+        TileObject= InTileObject;
+        var GO = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        WordPosition = InTileObject.transform.localPosition + InTileObject.transform.forward * 0.5f + InTileObject.transform.right * 0.5f;
+
+        GO.transform.position = WordPosition + Vector3.up;
+        GO.transform.localScale /= 2f;
         Index = InIndex;
     }
     

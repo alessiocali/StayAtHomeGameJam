@@ -23,12 +23,12 @@ public class GameManager : Singleton<GameManager>
     public void SpawnOccupantObjectOnTile(GameObject prefab, GridTile.TileIndex index)
     {
         // TODO Test for the cell not being occupied
-
         GridTile tile = GridMap.GetTileAt(index);
         Vector3 tileCenter = tile.GetOccupantPosition();
-        PendingSpawnedObjectsToAdd.Add(Instantiate(prefab, tileCenter, Quaternion.identity));
-    }
 
+        PendingSpawnedObjectsToAdd.Add(Instantiate(prefab, tileCenter, Quaternion.Euler(0, -45, 0)));
+    }
+    
     private void CleanupDestroyedOccupants()
     {
         RuntimeOccupantObjects.RemoveAll(go => go == null);
@@ -44,7 +44,7 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (GameObject objectToSpawn in OccupantsToSpawnOnStart)
         {
-            SpawnOccupantObjectOnTile(objectToSpawn, new GridTile.TileIndex(0, 0));
+            SpawnOccupantObjectOnTile(objectToSpawn, GridMap.GetRandomTileIndex());
         }
     }
 
@@ -82,7 +82,7 @@ public class GameManager : Singleton<GameManager>
         GridMap = FindObjectOfType<GridMap>();
         GridMap.GenerateGrid();
         SpawnStartingOccupants();
-        UpdateRuntimeOccupants();
+        UpdateRuntimeOccupants();   
     }
 
     void Update()
