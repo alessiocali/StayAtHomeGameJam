@@ -80,6 +80,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         GridMap = FindObjectOfType<GridMap>();
+        GridMap.GenerateGrid();
         SpawnStartingOccupants();
         UpdateRuntimeOccupants();
     }
