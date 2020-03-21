@@ -27,6 +27,7 @@ public class GameManager : Singleton<GameManager>
         Vector3 tileCenter = tile.GetOccupantPosition();
 
         GameObject PrefabObject = Instantiate(prefab, tileCenter, Quaternion.Euler(0, -45, 0));
+        PrefabObject.GetComponent<Occupant>().CurrentTileIndex = index;
         PrefabObject.transform.localScale /= 2;
 
         PendingSpawnedObjectsToAdd.Add(PrefabObject);
