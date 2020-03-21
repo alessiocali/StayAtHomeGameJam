@@ -15,6 +15,11 @@ public class GameManager : Singleton<GameManager>
     private List<GameObject> RuntimeOccupantObjects = new List<GameObject>();
     private List<GameObject> PendingSpawnedObjectsToAdd = new List<GameObject>();
 
+    public void GameOver()
+    {
+        // TODO
+    }
+
     /// <summary>
     /// Spawns on request the given prefab object to the target Tile
     /// </summary>

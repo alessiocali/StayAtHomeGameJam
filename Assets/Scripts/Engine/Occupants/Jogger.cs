@@ -31,12 +31,12 @@ public class Jogger : Character
             UpdateCurrentDirection();
 
             GridTile.TileIndex nextTile = GetNextTileIndex();
-            if (nextTile.X != CurrentTileIndex.X && nextTile.Y != CurrentTileIndex.Y)
+            if (nextTile.X != CurrentTileIndex.X || nextTile.Y != CurrentTileIndex.Y)
             {
                 SpawnVirusOnCurrentTile();
             }
 
-            MoveToTile(GetNextTileIndex());
+            MoveToTile(nextTile);
         }
 
         return IsMoving ? UpdateTurnResult.Pending : UpdateTurnResult.Completed;

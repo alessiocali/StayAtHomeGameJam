@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7779437964564086600
+--- !u!1 &4999612307239438187
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6750126476983618907}
-  - component: {fileID: 2375159501291419501}
-  - component: {fileID: 8343705079992650644}
-  - component: {fileID: 2029552339374177806}
+  - component: {fileID: 1147225344769773444}
+  - component: {fileID: 2621706729466589529}
+  - component: {fileID: 1890300587371290994}
+  - component: {fileID: 4705780747427871329}
+  - component: {fileID: 8633959451184487419}
   m_Layer: 0
-  m_Name: Jogger
+  m_Name: Virus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6750126476983618907
+--- !u!4 &1147225344769773444
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7779437964564086600}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 4999612307239438187}
+  m_LocalRotation: {x: -0, y: -0, z: 0.00097652676, w: 0.9999995}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2375159501291419501
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.112}
+--- !u!33 &2621706729466589529
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7779437964564086600}
-  m_Mesh: {fileID: -8571902992826521787, guid: 36a99606cb14c7f4ea826d080f0d304c, type: 3}
---- !u!23 &8343705079992650644
+  m_GameObject: {fileID: 4999612307239438187}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1890300587371290994
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7779437964564086600}
+  m_GameObject: {fileID: 4999612307239438187}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0bcf558f290dd0f4cb7d277eb5f61c40, type: 2}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,18 +81,30 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2029552339374177806
+--- !u!135 &4705780747427871329
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999612307239438187}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8633959451184487419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7779437964564086600}
+  m_GameObject: {fileID: 4999612307239438187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b383d57cf9c98ce4e9396eb687040016, type: 3}
+  m_Script: {fileID: 11500000, guid: 25bcbfb01a9009c45ac5e62b0bdd5e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnsBeforeChangingDirection: 4
-  VirusPrefab: {fileID: 4999612307239438187, guid: 96f9dc1f95b9d5a4793043e57d18d6a6,
-    type: 3}
+  ContagionLevel: 0
+  NumberOfTurnsAlive: 3

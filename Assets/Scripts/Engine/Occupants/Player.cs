@@ -35,4 +35,12 @@ public class Player : Character
         //Start An Action (move or whatever)
     }
 
+    public void IncreaseContagionLevel(float amount)
+    {
+        ContagionLevel += amount;
+        if (ContagionLevel >= 1)
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
 }
