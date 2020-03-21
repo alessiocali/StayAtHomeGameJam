@@ -10,9 +10,8 @@ public class Grandma : Character
         Sneezing
     };
 
-    public override UpdateTurnResult UpdateTurnInternal() {
-
-        var list = GameManager.Instance.GridMap.GetTilesAround(CurrentTileIndex);
+    protected override UpdateTurnResult UpdateTurnInternal() {
+        List<GridTile> tilesList = GameManager.Instance.GridMap.GetTilesAround(CurrentTileIndex);
         return UpdateTurnResult.Completed;
     }
 }
