@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2428244966114264233}
   - component: {fileID: 8254625898806179920}
   m_Layer: 0
-  m_Name: blocco_grigio
+  m_Name: blocco_casa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7688353240261774476}
-  m_Mesh: {fileID: 8845812895871436227, guid: bd23673b687c78f49a3a4fe284cf8279, type: 3}
+  m_Mesh: {fileID: -5323530082879310835, guid: 27a871245cfb0ee439f7736972774a4a, type: 3}
 --- !u!23 &8254625898806179920
 MeshRenderer:
   m_ObjectHideFlags: 0
