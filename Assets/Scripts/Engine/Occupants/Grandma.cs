@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Grandma : Character
 {
+    [SerializeField]
+    private GameObject sneezePrefab;
+
     private enum GrandmaChoices
     {
         Moving,
@@ -38,6 +41,7 @@ public class Grandma : Character
 
             case (int)GrandmaChoices.Sneezing:
                 //TODO: spawn
+                GameManager.Instance.SpawnOccupantObjectOnTile(sneezePrefab, CurrentTileIndex);
                 break;
         
         
