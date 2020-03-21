@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jogger : Character
 {
     public int TurnsBeforeChangingDirection = 4;
+    public GameObject VirusPrefab = null;
 
     private struct DesiredDirection
     {
@@ -28,10 +29,27 @@ public class Jogger : Character
         if (!HasStartedMoving)
         {
             UpdateCurrentDirection();
+
+            GridTile.TileIndex nextTile = GetNextTileIndex();
+            if (nextTile.X != CurrentTileIndex.X && nextTile.Y != CurrentTileIndex.Y)
+            {
+                SpawnVirusOnCurrentTile();
+            }
+
             MoveToTile(GetNextTileIndex());
         }
 
         return IsMoving ? UpdateTurnResult.Pending : UpdateTurnResult.Completed;
+    }
+
+    private void SpawnVirusOnCurrentTile()
+    {
+        if (VirusPrefab == null)
+        {
+            return;
+        }
+
+        GameManager.Instance.SpawnOccupantObjectOnTile(VirusPrefab, CurrentTileIndex);
     }
 
     private void UpdateCurrentDirection()
