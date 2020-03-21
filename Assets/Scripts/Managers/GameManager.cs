@@ -26,7 +26,11 @@ public class GameManager : Singleton<GameManager>
 
         GridTile tile = GridMap.GetTileAt(index);
         Vector3 tileCenter = tile.GetOccupantPosition();
-        PendingSpawnedObjectsToAdd.Add(Instantiate(prefab, tileCenter, Quaternion.identity));
+
+        GameObject instance = Instantiate(prefab, tileCenter, Quaternion.identity);
+        instance.GetComponent<Occupant>().CurrentTileIndex = index;
+
+        PendingSpawnedObjectsToAdd.Add(instance);
     }
 
     private void CleanupDestroyedOccupants()
@@ -44,7 +48,7 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (GameObject objectToSpawn in OccupantsToSpawnOnStart)
         {
-            SpawnOccupantObjectOnTile(objectToSpawn, new GridTile.TileIndex(0, 0));
+            SpawnOccupantObjectOnTile(objectToSpawn, GridMap.GetRandomTileIndex());
         }
     }
 
