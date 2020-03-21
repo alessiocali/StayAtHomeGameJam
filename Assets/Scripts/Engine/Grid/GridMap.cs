@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GridMap : MonoBehaviour
 {
@@ -99,5 +100,13 @@ public class GridMap : MonoBehaviour
             }
         }
         return Tiles;
+    }
+
+
+    public List<GridTile> GetWalkableTilesAround(GridTile.TileIndex InIndex)
+    {
+        List<GridTile> Tiles = GetTilesAround(InIndex);
+
+        return Tiles.Where(x => x.isWalkable == true).ToList();
     }
 }

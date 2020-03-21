@@ -16,7 +16,9 @@ public class GridTile
         public int Y { get; private set; }
     }
 
-    private TileIndex Index;
+    public bool isWalkable { get;  set; } = false;
+
+    public TileIndex Index { get; private set; }
     private Vector3 WordPosition;
 
     public GameObject TileObject { get; private set; } = null;

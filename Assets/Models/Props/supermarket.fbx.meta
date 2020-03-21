@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b84b50049db83c34a806b719267e3473
+guid: 4b4782b20f8fb3143a812d9a323702bc
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Materiale_Char
-    second: {fileID: 2100000, guid: 0bcf558f290dd0f4cb7d277eb5f61c40, type: 2}
+      name: HexagonsShared.001
+    second: {fileID: 2100000, guid: 90c6238cc9e0564488dd9622606f9b3a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

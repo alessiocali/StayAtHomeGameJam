@@ -2,22 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : Occupant
+public abstract class Character : Occupant
 {
-    public override UpdateTurnResult UpdateTurn()
+    protected bool IsMoving = false;
+    protected bool HasStartedMoving = false;
+
+    public sealed override UpdateTurnResult UpdateTurn()
     {
-        return UpdateTurnResult.Completed;
+        UpdateTurnResult updateResult = UpdateTurnInternal();
+
+        if (updateResult == UpdateTurnResult.Completed)
+        {
+            HasStartedMoving = false;
+        }
+
+        return updateResult;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    protected abstract UpdateTurnResult UpdateTurnInternal();
+
+    protected void MoveToTile(GridTile.TileIndex tileIndex)
     {
-        
+        StartCoroutine("MoveCoroutine", tileIndex);
+        HasStartedMoving = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator MoveCoroutine(GridTile.TileIndex tileIndex)
     {
-        
+        IsMoving = true;
+        yield return new WaitForSeconds(2.0f);
+
+        CurrentTileIndex = tileIndex;
+        IsMoving = false;
     }
+
 }
