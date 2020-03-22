@@ -16,8 +16,10 @@ public class GridTile:MonoBehaviour
         public int Y { get; private set; }
     }
 
-    public bool isWalkable { get; set; } = false;
-    public bool isBuilding { get; set; } = false;
+    [SerializeField]
+    public bool isWalkable;
+    [SerializeField]
+    public bool isBuilding;
 
     public TileIndex Index { get; private set; }
     private Vector3 WordPosition;
@@ -30,8 +32,7 @@ public class GridTile:MonoBehaviour
     public void InitializeGridTile (GameObject InTileObject, TileIndex InIndex)
     {
         TileObject= InTileObject;
-        WordPosition = InTileObject.transform.position + InTileObject.transform.forward * 0.5f + InTileObject.transform.right * 0.5f;
-        WordPosition += Vector3.up; 
+        WordPosition = InTileObject.transform.position + new Vector3(0.5f, 1f, 0.5f);
         Index = InIndex;
     }
 

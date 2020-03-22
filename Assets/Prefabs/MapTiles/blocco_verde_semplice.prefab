@@ -25,6 +25,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90f49375d262e64d9e0acc2e55c9096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalkable: 1
+  isBuilding: 0
 --- !u!1001 &4826004923160417557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,7 +97,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 1df94cd445f445b4f9cfba413915bcf0,
         type: 3}
       propertyPath: m_TagString
-      value: LIghtGreen
+      value: LightGreen
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 1df94cd445f445b4f9cfba413915bcf0,
         type: 3}
