@@ -67,6 +67,7 @@ public abstract class Character : Occupant
 
         if (targetTile.HasCharacterOccupant())
         {
+            AudioManager.Instance.PlayCharacterBump();
             yield return PlayAnimation("Bump");
         }
         else

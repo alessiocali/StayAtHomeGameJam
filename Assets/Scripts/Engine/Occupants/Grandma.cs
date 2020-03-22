@@ -3,15 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class Grandma : Character
 {
     [SerializeField]
     private GameObject sneezePrefab;
-
-   // public AudioClip sneezeSound;
-
-    private AudioSource source;
 
     private enum GrandmaChoices
     {
@@ -43,7 +38,7 @@ public class Grandma : Character
 
             case (int)GrandmaChoices.Sneezing:
                 SpawnVirusClouds();
-                source.Play();
+                AudioManager.Instance.PlayGrandmaCough();
                 break;
         
         
@@ -76,10 +71,5 @@ public class Grandma : Character
 
             GameManager.Instance.SpawnOccupantObjectOnTile(sneezePrefab, tile.Index);
         }
-    }
-
-    private void Awake()
-    {
-        source = GetComponent<AudioSource>();
     }
 }

@@ -5,18 +5,8 @@ using System;
 
 public class AudioManager : Singleton<AudioManager>
 {
-
-    public AudioClip IntroBgMusic;
-    public AudioClip GameBgMusic;
-    public AudioClip TrumpDie;
-    public AudioClip TrumpGameOver;
-    public List<AudioClip> TrumpMexicanHasPassed;
-    public AudioClip[] TrumpHit = new AudioClip[3];
-    public AudioClip[] BrickDestroy = new AudioClip[3];
-    public AudioClip[] BrickRepair = new AudioClip[3];
-    public AudioClip[] BrickPick = new AudioClip[3];
-    public List<AudioClip> TrumpSays;
-    public AudioClip CannonShot;
+    public AudioClip GrandmaCough;
+    public AudioClip CharacterBump;
 
     public class Sound
     {
@@ -197,55 +187,13 @@ public class AudioManager : Singleton<AudioManager>
         });
     }
 
-    public void PlayBrickPick()
+    public void PlayGrandmaCough()
     {
-        int rand = UnityEngine.Random.Range(0, 3);
-        PlayNewSound(BrickPick[rand]);
+        PlayNewSound(GrandmaCough);
     }
 
-    public void PlayBrickRepair()
+    public void PlayCharacterBump()
     {
-        int rand = UnityEngine.Random.Range(0, 3);
-        PlayNewSound(BrickRepair[rand]);
-    }
-
-    public void PlayBrickDestroy()
-    {
-        int rand = UnityEngine.Random.Range(0, 3);
-        PlayNewSound(BrickDestroy[rand]);
-    }
-
-    public void PlayTrumpHit(int life)
-    {
-        if (life > 2) life = 2;
-        if (life < 0) life = 0;
-        PlayNewSound(TrumpHit[life]);
-    }
-
-    public void PlayTrumpDie()
-    {
-        PlayNewSound(TrumpDie);
-    }
-
-    public void PlayTrumpGameOver()
-    {
-        PlayNewSound(TrumpGameOver);
-    }
-
-    public void PlayCannonShot()
-    {
-        PlayNewSound(CannonShot);
-    }
-
-    public void PlayTrumpSpeech()
-    {
-        int rand = UnityEngine.Random.Range(0, TrumpSays.Count);
-        PlayNewSound(TrumpSays[rand]);
-    }
-
-    public void PlayTrumpMexicanHasPassed()
-    {
-        int rand = UnityEngine.Random.Range(0, TrumpMexicanHasPassed.Count);
-        PlayNewSound(TrumpMexicanHasPassed[rand]);
+        PlayNewSound(CharacterBump);
     }
 }
