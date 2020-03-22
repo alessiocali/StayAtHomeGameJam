@@ -20,6 +20,11 @@ public class Player : Character
         InputManager.OnClicked -= OnTileClicked;
     }
 
+    public bool IsWaitingForInput()
+    {
+        return ItsMyTurn && !HasStartedMoving;
+    }
+
     public void OnTileClicked(string tileName, GridTile.TileIndex tileIndex)
     {
         if (!ItsMyTurn || HasStartedMoving)

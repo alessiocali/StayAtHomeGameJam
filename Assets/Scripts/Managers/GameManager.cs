@@ -25,6 +25,11 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("Game Over :(");
     }
 
+    public bool IsPlayerWaitingForInput()
+    {
+        return FindObjectOfType<Player>().IsWaitingForInput();
+    }
+
     /// <summary>
     /// Spawns on request the given prefab object to the target Tile
     /// </summary>
