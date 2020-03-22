@@ -22,8 +22,6 @@ public class InputManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            Debug.DrawRay(ray.origin, ray.direction * 200f, Color.red,5);
-
             if (Physics.Raycast(ray, out hit, 200f,layer_mask))
             {
                 try

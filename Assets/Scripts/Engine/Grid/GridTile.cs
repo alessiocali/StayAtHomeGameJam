@@ -24,7 +24,7 @@ public class GridTile:MonoBehaviour
 
     private void OnMouseOver()
     {
-        Debug.Log("On mouse over Tile: " + Index.X + " " + Index.Y);
+        
         if (isWalkable)
         {
             var tilesAround = GameManager.Instance.GridMap.GetCardinalAndWalkableTilesAround(Index);
@@ -41,7 +41,6 @@ public class GridTile:MonoBehaviour
 
     private void OnMouseExit()
     {
-        Debug.Log("On mouse over Tile: " + Index.X + " " + Index.Y);
         GetComponent<Renderer>().material.shader = Shader.Find("Standard");
     }
     public TileIndex Index { get; private set; }
