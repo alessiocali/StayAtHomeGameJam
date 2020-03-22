@@ -8,6 +8,44 @@ public class Player : Character
     private bool HasCertification;
     private bool HasToiletPaper;
 
+    private bool ItsMyTurn = false;
+
+    private void OnEnable()
+    {
+        InputManager.OnClicked += OnTileClicked;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.OnClicked -= OnTileClicked;
+    }
+
+    public void OnTileClicked(string tileName, GridTile.TileIndex tileIndex)
+    {
+        if (!ItsMyTurn || HasStartedMoving)
+        {
+            return;
+        }
+
+        GridTile targetTile = GameManager.Instance.GridMap.GetTileAt(tileIndex);
+        List<GridTile> tilesAround = GameManager.Instance.GridMap.GetCardinalTilesAround(CurrentTileIndex);
+
+        bool isValidTile(GridTile gridTile)
+        {
+            return  gridTile.isWalkable &&
+                    gridTile.Index.X == tileIndex.X &&
+                    gridTile.Index.Y == tileIndex.Y;
+        }
+
+        bool tileIsValid = tilesAround.Find(isValidTile) != null;
+        if (!tileIsValid)
+        {
+            return;
+        }
+
+        MoveToTile(tileIndex);
+    }
+
     public override void OnOtherOccupantCollided(Occupant other)
     {
         base.OnOtherOccupantCollided(other);
@@ -19,27 +57,24 @@ public class Player : Character
 
     protected override UpdateTurnResult UpdateTurnInternal()
     {
-        return UpdateTurnResult.Completed;
+        if (HasStartedMoving)
+        {
+            return UpdateMovement();
+        }
 
-        //ItsMyTurn = true;
-
-        //if (ActionDone)
-        //{
-        //    ItsMyTurn = false;
-        //    return UpdateTurnResult.Completed;
-        //}
-
-        //return UpdateTurnResult.Pending;
+        ItsMyTurn = true;
+        return UpdateTurnResult.Pending;
     }
 
-    public void MoveSomewhere(int x)
+    private UpdateTurnResult UpdateMovement()
     {
-        //if (!CanMove())
-        //{
-        //    return;
-        //}
+        if (!IsMoving)
+        {
+            ItsMyTurn = false;
+            return UpdateTurnResult.Completed;
+        }
 
-        //Start An Action (move or whatever)
+        return UpdateTurnResult.Pending;
     }
 
     public void IncreaseContagionLevel(float amount)
