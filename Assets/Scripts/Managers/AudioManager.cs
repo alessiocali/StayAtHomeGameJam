@@ -5,6 +5,8 @@ using System;
 
 public class AudioManager : Singleton<AudioManager>
 {
+    public AudioClip BackgroundMusic;
+
     public AudioClip GrandmaCough;
     public AudioClip CharacterBump;
 
@@ -17,6 +19,7 @@ public class AudioManager : Singleton<AudioManager>
         public Action<Sound> callback;
         public bool loop;
         public bool interrupts;
+        public float volume = 1.0f;
 
         private HashSet<Sound> interruptedSounds = new HashSet<Sound>();
 
@@ -129,24 +132,25 @@ public class AudioManager : Singleton<AudioManager>
     public HashSet<Sound> sounds = new HashSet<Sound>();
 
     /// Creates a new sound, registers it, gives it the properties specified, and starts playing it
-    public Sound PlayNewSound(string soundName, bool loop = false, bool interrupts = false, Action<Sound> callback = null)
+    public Sound PlayNewSound(string soundName, bool loop = false, bool interrupts = false, float volume = 1.0f, Action<Sound> callback = null)
     {
-        Sound sound = NewSound(soundName, loop, interrupts, callback);
+        Sound sound = NewSound(soundName, loop, interrupts, volume, callback);
         sound.playing = true;
         return sound;
     }
 
-    public Sound PlayNewSound(AudioClip soundResource, bool loop = false, bool interrupts = false, Action<Sound> callback = null)
+    public Sound PlayNewSound(AudioClip soundResource, bool loop = false, bool interrupts = false, float volume = 1.0f, Action<Sound> callback = null)
     {
-        Sound sound = NewSound(soundResource, loop, interrupts, callback);
+        Sound sound = NewSound(soundResource, loop, interrupts, volume, callback);
         sound.playing = true;
         return sound;
     }
 
     /// Takes a sound, registers it, and gives it the properties specified
-    public Sound NewSound(AudioClip soundResource, bool loop = false, bool interrupts = false, Action<Sound> callback = null)
+    public Sound NewSound(AudioClip soundResource, bool loop = false, bool interrupts = false, float volume = 1.0f, Action<Sound> callback = null)
     {
         Sound sound = new Sound(soundResource);
+        sound.volume = volume;
         RegisterSound(sound);
         sound.loop = loop;
         sound.interrupts = interrupts;
@@ -155,9 +159,10 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     /// Creates a new sound, registers it, and gives it the properties specified
-    public Sound NewSound(string soundName, bool loop = false, bool interrupts = false, Action<Sound> callback = null)
+    public Sound NewSound(string soundName, bool loop = false, bool interrupts = false, float volume = 1.0f, Action<Sound> callback = null)
     {
         Sound sound = new Sound(soundName);
+        sound.volume = volume;
         RegisterSound(sound);
         sound.loop = loop;
         sound.interrupts = interrupts;
@@ -176,6 +181,7 @@ public class AudioManager : Singleton<AudioManager>
         {
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.clip = sound.clip;
+            source.volume = sound.volume;
             sound.source = source;
         }
     }
@@ -195,5 +201,10 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayCharacterBump()
     {
         PlayNewSound(CharacterBump);
+    }
+
+    private void Start()
+    {
+        PlayNewSound(BackgroundMusic, true, false, 0.5f);
     }
 }
