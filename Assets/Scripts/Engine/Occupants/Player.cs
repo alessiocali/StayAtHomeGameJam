@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Player : Character
 {
-    private float ContagionLevel;
+    //private float ContagionLevel;
+    private int ContagionLevel = 0;
+
     private bool HasCertification;
     private bool HasToiletPaper;
 
@@ -54,9 +56,9 @@ public class Player : Character
     public override void OnOtherOccupantCollided(Occupant other)
     {
         base.OnOtherOccupantCollided(other);
-        if (other is Character otherCharacter)
+        if (other is Character)
         {
-            IncreaseContagionLevel(otherCharacter.ContagionLevelOnPlayerBump);
+            IncreaseContagionLevel();
         }
     }
 
@@ -104,10 +106,18 @@ public class Player : Character
         }
     }
 
-    public void IncreaseContagionLevel(float amount)
+    public void IncreaseContagionLevel()
     {
-        ContagionLevel += amount;
-        if (ContagionLevel >= 1)
+        ContagionLevel ++;
+
+        //Pls ignore this horror
+        var go = GameObject.Find("Mask" + ContagionLevel.ToString());
+        if (go != null)
+        {
+            go.SetActive(false);
+        }
+
+        if (ContagionLevel >= 3)
         {
             GameManager.Instance.GameOver();
         }

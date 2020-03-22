@@ -24,7 +24,7 @@ public class VirusCloud : ImmovableObject
     {
         if (occupant is Player occupantPlayer)
         {
-            occupantPlayer.IncreaseContagionLevel(ContagionLevel);
+            occupantPlayer.IncreaseContagionLevel();
             Destroy(gameObject);
         }
     }

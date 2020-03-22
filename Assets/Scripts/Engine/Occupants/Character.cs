@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public abstract class Character : Occupant
 {
-    [SerializeField]
-    [Range(0,1)]
-    public float ContagionLevelOnPlayerBump = 0.3f;
+   // [SerializeField]
+   // [Range(0,1)]
+   // public float ContagionLevelOnPlayerBump = 0.3f;
 
     protected bool IsMoving = false;
     protected bool HasStartedMoving = false;
@@ -30,7 +30,7 @@ public abstract class Character : Occupant
     {
         if (other is Player otherPlayer)
         {
-            otherPlayer.IncreaseContagionLevel(ContagionLevelOnPlayerBump);
+            otherPlayer.IncreaseContagionLevel();
         }
     }
 
