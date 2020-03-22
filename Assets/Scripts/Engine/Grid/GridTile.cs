@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Renderer))]
 public class GridTile:MonoBehaviour
 {
     public struct TileIndex
@@ -21,6 +22,27 @@ public class GridTile:MonoBehaviour
     [SerializeField]
     public bool isBuilding;
 
+    private void OnMouseOver()
+    {
+        Debug.Log("On mouse over Tile: " + Index.X + " " + Index.Y);
+        if (isWalkable)
+        {
+            var tilesAround = GameManager.Instance.GridMap.GetCardinalAndWalkableTilesAround(Index);
+            foreach(var tile in tilesAround){
+                if (tile.HasPlayerOccupant())
+                {
+                    GetComponent<Renderer>().material.shader = Shader.Find("Custom/Glow");
+                }
+            }            
+        }
+       
+    }
+
+    private void OnMouseExit()
+    {
+        Debug.Log("On mouse over Tile: " + Index.X + " " + Index.Y);
+        GetComponent<Renderer>().material.shader = Shader.Find("Standard");
+    }
     public TileIndex Index { get; private set; }
     private Vector3 WordPosition;
 
@@ -36,6 +58,11 @@ public class GridTile:MonoBehaviour
     public bool HasCharacterOccupant()
     {
         return Occupants.Find(occupant => occupant is Character) != null;
+    }
+
+    public bool HasPlayerOccupant()
+    {
+        return Occupants.Find(occupant => occupant is Player) != null;
     }
 
     public void AddOccupant(Occupant occupant)
