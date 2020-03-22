@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -103,12 +102,7 @@ public class Player : Character
         if (currentTile.CompareTag("SuperMarket"))
         {
             HasToiletPaper = true;
-            var go = GameObject.Find("Toilet Paper");
-            var image = go.GetComponent<Image>();
-            if (image != null)
-            {
-                image.enabled = true;
-            }
+            GameManager.Instance.SetToiletPaperHUDActive(true);
             return;
         }
     }
@@ -116,13 +110,7 @@ public class Player : Character
     public void IncreaseContagionLevel()
     {
         ContagionLevel ++;
-
-        //Pls ignore this horror
-        var go = GameObject.Find("Mask" + ContagionLevel.ToString());
-        if (go != null)
-        {
-            go.SetActive(false);
-        }
+        GameManager.Instance.SetMaskHUDActive(false, ContagionLevel);
 
         if (ContagionLevel >= 3)
         {

@@ -32,4 +32,9 @@ public class Pause_Menu : MonoBehaviour {
     public void quitGame() {
         Application.Quit();
     }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }

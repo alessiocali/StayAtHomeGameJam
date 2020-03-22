@@ -63,21 +63,27 @@ public abstract class Character : Occupant
             }
         }
 
-        targetTile.OnOccupantCollided(this);
+        bool MoveSucceded = true;
 
         if (targetTile.HasCharacterOccupant())
         {
             AudioManager.Instance.PlayCharacterBump();
             yield return PlayAnimation("Bump");
+            MoveSucceded = false;
         }
         else if (targetTile.isBuilding)
         {
             yield return PlayAnimation("GetInBuilding");
-            CurrentTileIndex = tileIndex;
         }
         else
         {
             yield return PlayAnimation("Move");
+        }
+
+        targetTile.OnOccupantCollided(this);
+
+        if (MoveSucceded)
+        {
             CurrentTileIndex = tileIndex;
         }
 

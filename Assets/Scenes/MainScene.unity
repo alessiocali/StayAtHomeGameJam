@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.024963379}
+  m_AnchoredPosition: {x: 0, y: 0.024902344}
   m_SizeDelta: {x: -0.000061035, y: 0.049988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &17625498
@@ -307,9 +307,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OccupantsToSpawnOnStart:
-  - {fileID: 6981593912737080337, guid: 485346729a9e9e24997a388502d452bf, type: 3}
-  - {fileID: 7779437964564086600, guid: 7089fc2f065568648b9a6bc77740f62a, type: 3}
   - {fileID: 9158390021816408588, guid: 2f784cb68d0df2247871d9d44adf4017, type: 3}
+  - {fileID: 7779437964564086600, guid: 7089fc2f065568648b9a6bc77740f62a, type: 3}
+  - {fileID: 6981593912737080337, guid: 485346729a9e9e24997a388502d452bf, type: 3}
 --- !u!4 &111260236
 Transform:
   m_ObjectHideFlags: 0
@@ -575,7 +575,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.024963379}
+  m_AnchoredPosition: {x: 0, y: 0.024902344}
   m_SizeDelta: {x: -0.000061035, y: 0.049988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &339313499
@@ -1184,7 +1184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.024963379}
+  m_AnchoredPosition: {x: 0, y: 0.024902344}
   m_SizeDelta: {x: -0.000061035, y: 0.049988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597462400
@@ -1929,7 +1929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 16.999878, y: 237.50006}
+  m_AnchoredPosition: {x: 17, y: 237.5}
   m_SizeDelta: {x: -1132, y: -789.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1089220768
@@ -2134,7 +2134,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 782895556}
-        m_MethodName: quitGame
+        m_MethodName: Reload
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2518,7 +2518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.024963379}
+  m_AnchoredPosition: {x: 0, y: 0.024902344}
   m_SizeDelta: {x: -0.000061035, y: 0.049988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1675806400
@@ -2794,7 +2794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.024963379}
+  m_AnchoredPosition: {x: 0, y: 0.024902344}
   m_SizeDelta: {x: -0.000061035, y: 0.049988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1813632900
@@ -3576,7 +3576,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 782895556}
-        m_MethodName: quitGame
+        m_MethodName: Reload
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

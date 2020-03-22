@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -15,9 +16,13 @@ public class GameManager : Singleton<GameManager>
     private List<GameObject> RuntimeOccupantObjects = new List<GameObject>();
     private List<GameObject> PendingSpawnedObjectsToAdd = new List<GameObject>();
 
+    private bool IsGameDone = false;
+
     public void GameWon()
     {
         Debug.Log("Game Won :D");
+        DisableHUD();
+        IsGameDone = true;
         var go = GameObject.Find("WIN");
         var goCanvas = go.GetComponent<Canvas>();
         goCanvas.enabled = true;
@@ -26,9 +31,30 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         Debug.Log("Game Over :(");
+        DisableHUD();
+        IsGameDone = true;
         var go = GameObject.Find("LOSE");
         var goCanvas = go.GetComponent<Canvas>();
         goCanvas.enabled = true;
+    }
+
+    public void SetToiletPaperHUDActive(bool active)
+    {
+        var go = GameObject.Find("Toilet Paper");
+        var image = go.GetComponent<Image>();
+        if (image != null)
+        {
+            image.enabled = active;
+        }
+    }
+
+    public void SetMaskHUDActive(bool active, int contagionLevel)
+    {
+        var go = GameObject.Find("Mask" + contagionLevel.ToString());
+        if (go != null)
+        {
+            go.SetActive(active);
+        }
     }
 
     public bool IsPlayerWaitingForInput()
@@ -52,7 +78,16 @@ public class GameManager : Singleton<GameManager>
 
         PendingSpawnedObjectsToAdd.Add(PrefabObject);
     }
-    
+
+    private void DisableHUD()
+    {
+        // So sorry :(
+        SetToiletPaperHUDActive(false);
+        SetMaskHUDActive(false, 1);
+        SetMaskHUDActive(false, 2);
+        SetMaskHUDActive(false, 3);
+    }
+
     private void CleanupDestroyedOccupants()
     {
         RuntimeOccupantObjects.RemoveAll(go => go == null);
@@ -112,6 +147,9 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        UpdateTurn();
+        if (!IsGameDone)
+        {
+            UpdateTurn();
+        }
     }
 }

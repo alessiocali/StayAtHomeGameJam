@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nome del Gioco
+  m_text: Keep Distant!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65ff235843264c14882297b799ecbbbb, type: 2}
   m_sharedMaterial: {fileID: -2726572748238971982, guid: 65ff235843264c14882297b799ecbbbb,
@@ -2085,10 +2085,10 @@ MonoBehaviour:
   m_margin: {x: -2.8285522, y: -0.000061035156, z: 0.115478516, w: 0}
   m_textInfo:
     textComponent: {fileID: 1713209837}
-    characterCount: 14
+    characterCount: 13
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1

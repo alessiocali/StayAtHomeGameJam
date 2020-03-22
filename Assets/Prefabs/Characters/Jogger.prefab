@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b383d57cf9c98ce4e9396eb687040016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContagionLevelOnPlayerBump: 0.3
   TurnsBeforeChangingDirection: 4
-  VirusPrefab: {fileID: 0}
+  VirusPrefab: {fileID: 1253122874872384, guid: f68c55851f485c240952b4b45648adda,
+    type: 3}
 --- !u!95 &-7372809733790885377
 Animator:
   serializedVersion: 3
