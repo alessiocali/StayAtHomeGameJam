@@ -31,7 +31,8 @@ public class GridTile:MonoBehaviour
             foreach(var tile in tilesAround){
                 if (tile.HasPlayerOccupant())
                 {
-                    GetComponent<Renderer>().material.shader = Shader.Find("Custom/Glow");
+                    if(GameManager.Instance.IsPlayerWaitingForInput())
+                         GetComponent<Renderer>().material.shader = Shader.Find("Custom/Glow");
                 }
             }            
         }
