@@ -116,7 +116,7 @@ public class PoliceMan : Character
     private void UpdateDirection()
     {
         TurnsInCurrentDirection++;
-        if (TurnsInCurrentDirection >= TurnsBeforeChangingDirection)
+        if (TurnsInCurrentDirection > TurnsBeforeChangingDirection)
         {
             TurnsInCurrentDirection = 0;
             FlipCurrentDirection();

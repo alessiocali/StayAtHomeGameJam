@@ -1491,9 +1491,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Game Made by:\nAlessio Cal\xEC\nMaria Giulia Canu\nAlessandro Mascherin\nRossella
-    Scarcia\n\nAssets:\nPolygon - Starter Kit\nSimple Town Lite - Cartoon Assets\nFarland
-    Skies - Cloudy Crown\nPolygonal's Low Poly Particle Pack"
+  m_text: "Game Made by:\nAlessio Giuseppe Cal\xEC\nMaria Giulia Canu\nAlessandro
+    Mascherin\nRossella Scarcia\n\nAssets:\nPolygon - Starter Kit\nSimple Town Lite
+    - Cartoon Assets\nFarland Skies - Cloudy Crown\nPolygonal's Low Poly Particle
+    Pack"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65ff235843264c14882297b799ecbbbb, type: 2}
   m_sharedMaterial: {fileID: -2726572748238971982, guid: 65ff235843264c14882297b799ecbbbb,

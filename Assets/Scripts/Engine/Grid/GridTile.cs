@@ -25,41 +25,55 @@ public class GridTile:MonoBehaviour
     private void OnMouseOver()
     {
         
-        if (isWalkable)
+        if (!GameManager.Instance.IsPlayerWaitingForInput())
         {
-            var tilesAround = GameManager.Instance.GridMap.GetCardinalAndWalkableTilesAround(Index);
-            foreach(var tile in tilesAround){
+            return;
+        }
+
+        if (isWalkable || isBuilding)
+        {
+            var tilesAround = GameManager.Instance.GridMap.GetCardinalTilesAround(Index);
+            foreach(var tile in tilesAround)
+            {
                 if (tile.HasPlayerOccupant())
                 {
-                    if (GameManager.Instance.IsPlayerWaitingForInput())
-                    {
-                        GetComponent<Renderer>().material.shader = Shader.Find("Custom/Glow");
-
-                        if (transform.childCount > 0)
-                        {
-                            foreach (Renderer render in GetComponentsInChildren<Renderer>(false))
-                            {
-                                render.material.shader = Shader.Find("Custom/Glow");
-                            }
-                        }
-                    }
+                    SetGlowing(true);
+                    return;
                 }
             }            
         }
        
     }
 
-    private void OnMouseExit()
+    public void SetGlowing(bool glowing)
     {
-        GetComponent<Renderer>().material.shader = Shader.Find("Standard");
+        string shaderName = glowing ? "Custom/Glow" : "Standard";
+
+        GetComponent<Renderer>().material.shader = Shader.Find(shaderName);
         if (transform.childCount > 0)
         {
             foreach (Renderer render in GetComponentsInChildren<Renderer>(false))
             {
-                render.material.shader = Shader.Find("Standard");
+                render.material.shader = Shader.Find(shaderName);
             }
         }
     }
+
+    private void OnMouseExit()
+    {
+        SetGlowing(false);
+    }
+
+    private void UpdateBuildingGlowing()
+    {
+        if (!isBuilding)
+        {
+            return;
+        }
+
+        SetGlowing(Occupants.Count > 0);
+    }
+
     public TileIndex Index { get; private set; }
     private Vector3 WordPosition;
 
@@ -93,12 +107,14 @@ public class GridTile:MonoBehaviour
         if (!Occupants.Contains(occupant))
         {
             Occupants.Add(occupant);
+            UpdateBuildingGlowing();
         }
     }
 
     public void RemoveOccupant(Occupant occupant)
     {
         Occupants.Remove(occupant);
+        UpdateBuildingGlowing();
     }
 
     public void OnOccupantCollided(Occupant other)
@@ -119,5 +135,13 @@ public class GridTile:MonoBehaviour
     public Vector3 GetOccupantPosition()
     {
         return WordPosition;
+    }
+
+    private void Update()
+    {
+        if (isBuilding && HasPlayerOccupant())
+        {
+            SetGlowing(true);
+        }
     }
 }

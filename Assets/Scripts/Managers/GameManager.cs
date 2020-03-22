@@ -115,7 +115,7 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnStartingOccupants()
     {
-        SpawnOccupantObjectOnTile(PlayerCharacter[SharedSceneParameter.CharacterSelected], GridMap.GetRandomTileIndex(false, true));
+        SpawnOccupantObjectOnTile(PlayerCharacter[SharedSceneParameter.CharacterSelected], GridMap.GetHomeTileIndex());
         
         foreach (GameObject objectToSpawn in OccupantsToSpawnOnStart)
         {
