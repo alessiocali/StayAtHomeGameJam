@@ -115,6 +115,11 @@ public class GridMap : MonoBehaviour
         }
     }
 
+    public GridTile.TileIndex GetHomeTileIndex()
+    {
+        return Grid.First((pair) => pair.Value.gameObject.CompareTag("House")).Key;
+    }
+
     public GridTile.TileIndex GetRandomTileIndex ()
     {
         int RandomX = Random.Range(0, GRID_WIDTH);

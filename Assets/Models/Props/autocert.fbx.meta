@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 1f3efdee12a53904db8ed02204339573
+guid: 7a6046c9f852b7d418801249fb5a635c
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Materiale_Char
-    second: {fileID: 2100000, guid: 0bcf558f290dd0f4cb7d277eb5f61c40, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Scritte
-    second: {fileID: 2100000, guid: 711496d3920351145b804d633f124517, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -56,7 +46,7 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    keepQuads: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0

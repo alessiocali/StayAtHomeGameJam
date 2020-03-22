@@ -82,6 +82,12 @@ public class GridTile:MonoBehaviour
         return Occupants.Find(occupant => occupant is Player) != null;
     }
 
+    public Player GetPlayerOccupant()
+    {
+        Occupant playerOccupant = Occupants.Find(occupant => occupant is Player);
+        return playerOccupant != null ? playerOccupant as Player : null;
+    }
+
     public void AddOccupant(Occupant occupant)
     {
         if (!Occupants.Contains(occupant))
