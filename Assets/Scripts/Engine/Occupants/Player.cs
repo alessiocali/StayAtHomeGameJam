@@ -32,7 +32,7 @@ public class Player : Character
 
         bool isValidTile(GridTile gridTile)
         {
-            return  gridTile.isWalkable &&
+            return  (gridTile.isWalkable || gridTile.isBuilding) &&
                     gridTile.Index.X == tileIndex.X &&
                     gridTile.Index.Y == tileIndex.Y;
         }
@@ -70,11 +70,33 @@ public class Player : Character
     {
         if (!IsMoving)
         {
+            CheckBuildingEffect();
             ItsMyTurn = false;
             return UpdateTurnResult.Completed;
         }
 
         return UpdateTurnResult.Pending;
+    }
+
+    private void CheckBuildingEffect()
+    {
+        GridTile currentTile = GetCurrentTile();
+        if (!currentTile.isBuilding)
+        {
+            return;
+        }
+
+        if (currentTile.CompareTag("House") && HasToiletPaper)
+        {
+            GameManager.Instance.GameWon();
+            return;
+        }
+
+        if (currentTile.CompareTag("SuperMarket"))
+        {
+            HasToiletPaper = true;
+            return;
+        }
     }
 
     public void IncreaseContagionLevel(float amount)

@@ -15,9 +15,14 @@ public class GameManager : Singleton<GameManager>
     private List<GameObject> RuntimeOccupantObjects = new List<GameObject>();
     private List<GameObject> PendingSpawnedObjectsToAdd = new List<GameObject>();
 
+    public void GameWon()
+    {
+        Debug.Log("Game Won :D");
+    }
+
     public void GameOver()
     {
-        // TODO
+        Debug.Log("Game Over :(");
     }
 
     /// <summary>
