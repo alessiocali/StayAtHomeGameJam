@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2428244966114264233}
   - component: {fileID: 8254625898806179920}
   - component: {fileID: 6347926317460735419}
+  - component: {fileID: 1100725924172134383}
   m_Layer: 8
   m_Name: blocco_casa
   m_TagString: House
@@ -94,6 +95,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Center: {x: 0.50000006, y: 0.50000006, z: 0.5}
+--- !u!114 &1100725924172134383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688353240261774476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90f49375d262e64d9e0acc2e55c9096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3202154165362589692
 PrefabInstance:
   m_ObjectHideFlags: 0

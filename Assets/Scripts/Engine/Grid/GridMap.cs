@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using Random = UnityEngine.Random;
 
 public class GridMap : MonoBehaviour
 {
@@ -41,12 +43,22 @@ public class GridMap : MonoBehaviour
                 Current3Cube.name = "Tile_" + (X + IndexOffsetX) + "_" + (Y + IndexOffsetY);
                 
                 GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X+IndexOffsetX, Y+IndexOffsetY);
-                GridTile Tile = new GridTile(Current3Cube, CurrentIndex);
-                Tile.isWalkable = true;
-                Grid.Add(CurrentIndex, Tile);
+                //GridTile Tile = new GridTile(Current3Cube, CurrentIndex);
+                //GridTile Tile = Current3Cube.AddComponent<GridTile>();
+                GridTile Tile = Current3Cube.GetComponent<GridTile>();
+                try
+                {
+                    Tile.InitializeGridTile(Current3Cube, CurrentIndex);
+                    Tile.isWalkable = true;
+                    Grid.Add(CurrentIndex, Tile);
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogError("Missing GridTile element on prefab");
+                }
             }
         }
-        GameObject.Destroy(Originator);
+        Destroy(Originator);
     }
 
     public Vector3 GetFacingRotation (GridTile Current, GridTile Desider)
