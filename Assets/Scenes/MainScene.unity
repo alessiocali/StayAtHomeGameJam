@@ -998,8 +998,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a1278f70fffbce04eb6026bd9c6ddf00, type: 2}
-  m_sharedMaterial: {fileID: 6502712949496691260, guid: a1278f70fffbce04eb6026bd9c6ddf00,
+  m_fontAsset: {fileID: 11400000, guid: 65ff235843264c14882297b799ecbbbb, type: 2}
+  m_sharedMaterial: {fileID: -2726572748238971982, guid: 65ff235843264c14882297b799ecbbbb,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1464,8 +1464,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pause
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a1278f70fffbce04eb6026bd9c6ddf00, type: 2}
-  m_sharedMaterial: {fileID: 6502712949496691260, guid: a1278f70fffbce04eb6026bd9c6ddf00,
+  m_fontAsset: {fileID: 11400000, guid: 65ff235843264c14882297b799ecbbbb, type: 2}
+  m_sharedMaterial: {fileID: -2726572748238971982, guid: 65ff235843264c14882297b799ecbbbb,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0

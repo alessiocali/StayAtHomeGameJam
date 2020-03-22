@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 627b79b27070ba246a81e208d51f32e4
+guid: a7a6d7ccc6fdfc147a2a82f64230f2c8
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: VTCSuperMarketSale
+  fontName: Hey Comic
   fontNames:
-  - VTCSuperMarketSale
+  - Hey Comic
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
