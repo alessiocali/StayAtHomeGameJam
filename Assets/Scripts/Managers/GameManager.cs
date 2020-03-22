@@ -18,11 +18,17 @@ public class GameManager : Singleton<GameManager>
     public void GameWon()
     {
         Debug.Log("Game Won :D");
+        var go = GameObject.Find("WIN");
+        var goCanvas = go.GetComponent<Canvas>();
+        goCanvas.enabled = true;
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over :(");
+        var go = GameObject.Find("LOSE");
+        var goCanvas = go.GetComponent<Canvas>();
+        goCanvas.enabled = true;
     }
 
     public bool IsPlayerWaitingForInput()

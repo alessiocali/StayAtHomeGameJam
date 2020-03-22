@@ -24,20 +24,23 @@ public class GridTile:MonoBehaviour
 
     private void OnMouseOver()
     {
-        Debug.Log("On mouse over Tile: " + Index.X + " " + Index.Y);
+        
         if (isWalkable)
         {
             var tilesAround = GameManager.Instance.GridMap.GetCardinalAndWalkableTilesAround(Index);
             foreach(var tile in tilesAround){
                 if (tile.HasPlayerOccupant())
                 {
-                    GetComponent<Renderer>().material.shader = Shader.Find("Custom/Glow");
-
-                    if (transform.childCount > 0)
+                    if (GameManager.Instance.IsPlayerWaitingForInput())
                     {
-                        foreach (Renderer render in GetComponentsInChildren<Renderer>(false))
+                        GetComponent<Renderer>().material.shader = Shader.Find("Custom/Glow");
+
+                        if (transform.childCount > 0)
                         {
-                            render.material.shader = Shader.Find("Custom/Glow");
+                            foreach (Renderer render in GetComponentsInChildren<Renderer>(false))
+                            {
+                                render.material.shader = Shader.Find("Custom/Glow");
+                            }
                         }
                     }
                 }
@@ -48,7 +51,6 @@ public class GridTile:MonoBehaviour
 
     private void OnMouseExit()
     {
-        Debug.Log("On mouse over Tile: " + Index.X + " " + Index.Y);
         GetComponent<Renderer>().material.shader = Shader.Find("Standard");
         if (transform.childCount > 0)
         {

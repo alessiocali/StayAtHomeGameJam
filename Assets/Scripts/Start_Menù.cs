@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class Start_Menù : MonoBehaviour
 {
     public void PlayGame() {
-        //SceneManager.LoadScene("Game_Manager");
         Debug.Log("START");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void QuitGame() {
