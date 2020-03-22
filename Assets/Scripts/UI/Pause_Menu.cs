@@ -6,6 +6,7 @@ public class Pause_Menu : MonoBehaviour {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject HUD;
+    public GameObject CharacterSelection;
 
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape)) {
@@ -33,8 +34,16 @@ public class Pause_Menu : MonoBehaviour {
         Application.Quit();
     }
 
+    public void ShowCharacterSelection ()
+    {
+        CharacterSelection.GetComponent<Canvas>().enabled = true;
+        GameObject.Find("WIN").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("LOSE").GetComponent<Canvas>().enabled = false;
+    }
+
     public void Reload()
     {
+
         SceneManager.LoadScene("MainScene");
     }
 }

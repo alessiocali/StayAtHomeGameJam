@@ -25,10 +25,11 @@ public class GridMap : MonoBehaviour
         int IndexOffsetX = GRID_WIDTH / 2;
         int IndexOffsetY = GRID_HEIGHT / 2;
 
-        int RandomIndex = Random.Range(0, MapsList.Count);
-
+        
         // Generate a map around the world center
-        GameObject Map = Instantiate(MapsList[RandomIndex], new Vector3(0, 0, 0), Quaternion.identity, transform);
+        GameObject Map = Instantiate(MapsList[SharedSceneParameter.MapLevel], new Vector3(0, 0, 0), Quaternion.identity, transform);
+
+        SharedSceneParameter.MapLevel = (SharedSceneParameter.MapLevel + 1) % MapsList.Count;
         if (!CheckExistsEssentialTiles(Map))
         {
             return;

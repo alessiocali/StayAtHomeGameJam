@@ -11,6 +11,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     protected List<GameObject> OccupantsToSpawnOnStart = new List<GameObject>();
 
+    [SerializeField]
+    public List<GameObject> PlayerCharacter = new List<GameObject>();
+
     private int CurrentOccupantToUpdateIdx = -1;
 
     private List<GameObject> RuntimeOccupantObjects = new List<GameObject>();
@@ -101,6 +104,8 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnStartingOccupants()
     {
+        SpawnOccupantObjectOnTile(PlayerCharacter[SharedSceneParameter.CharacterSelected], GridMap.GetRandomTileIndex(false, true));
+        
         foreach (GameObject objectToSpawn in OccupantsToSpawnOnStart)
         {
             //Get tile without occupants and that's walkable
