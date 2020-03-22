@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SuperMarket
+  - House
+  - Tree
+  - Street
+  - CrossRoad
+  - ParkingArea
+  - DarkGreen
+  - LightGreen
+  - LIghtGreen
   layers:
   - Default
   - TransparentFX
