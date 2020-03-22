@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3162588841561353268}
   - component: {fileID: 8709764458113339597}
   - component: {fileID: 3176072427514626758}
+  - component: {fileID: -4449202435033687892}
   m_Layer: 0
-  m_Name: vecchietta
+  m_Name: Grandma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,3 +93,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bfa55df32e93ca48a0d7f29807eddf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ContagionLevelOnPlayerBump: 0.3
+  sneezePrefab: {fileID: 0}
+--- !u!95 &-4449202435033687892
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981593912737080337}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99ea7e9a91ce1b84780e5310cb88a3eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

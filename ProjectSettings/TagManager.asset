@@ -12,7 +12,6 @@ TagManager:
   - ParkingArea
   - DarkGreen
   - LightGreen
-  - LIghtGreen
   layers:
   - Default
   - TransparentFX
@@ -22,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Tile
   - 
   - 
   - 

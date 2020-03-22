@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &9029548724199680417
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172772920622035052}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_Center: {x: 0.50000006, y: 0.50000006, z: 0.5}
+--- !u!114 &1352207109319782347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172772920622035052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90f49375d262e64d9e0acc2e55c9096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5388917364182280549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,12 +90,23 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: d6f3acae91127cf47ad6ab8b1ec25cc2,
         type: 3}
       propertyPath: m_Name
-      value: strada_incrocio Variant
+      value: strada_incrocio
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: d6f3acae91127cf47ad6ab8b1ec25cc2,
         type: 3}
       propertyPath: m_TagString
       value: CrossRoad
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d6f3acae91127cf47ad6ab8b1ec25cc2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f3acae91127cf47ad6ab8b1ec25cc2, type: 3}
+--- !u!1 &4172772920622035052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: d6f3acae91127cf47ad6ab8b1ec25cc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5388917364182280549}
+  m_PrefabAsset: {fileID: 0}

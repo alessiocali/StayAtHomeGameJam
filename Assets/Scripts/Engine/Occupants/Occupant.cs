@@ -21,12 +21,20 @@ public abstract class Occupant : MonoBehaviour
 
         set
         {
+            GridTile previousTile = GetCurrentTile();
+            if (previousTile != null)
+            {
+                previousTile.Occupant = null;
+            }
+
             TileIndex = value;
-            transform.position = GetCurrentTile().GetOccupantPosition();
+            GridTile newTile = GetCurrentTile();
+            newTile.Occupant = this;
+            transform.position = newTile.GetOccupantPosition();
         }
     }
 
-    GridTile GetCurrentTile()
+    protected GridTile GetCurrentTile()
     {
         return GameManager.Instance.GridMap.GetTileAt(CurrentTileIndex);
     }

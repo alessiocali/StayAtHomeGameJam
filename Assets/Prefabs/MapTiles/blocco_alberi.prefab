@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 5091523616629296687}
   - component: {fileID: 4320007022989587481}
   - component: {fileID: 7552314562011678944}
-  m_Layer: 0
+  - component: {fileID: 7981499762405644246}
+  - component: {fileID: 7284686948611716492}
+  m_Layer: 8
   m_Name: blocco_alberi
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -81,6 +83,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7981499762405644246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8139095346231213116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1.0037796, z: 1}
+  m_Center: {x: 0.50000006, y: 0.5018898, z: 0.5}
+--- !u!114 &7284686948611716492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8139095346231213116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90f49375d262e64d9e0acc2e55c9096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &362700126568131705
 PrefabInstance:
   m_ObjectHideFlags: 0

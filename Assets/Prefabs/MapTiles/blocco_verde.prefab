@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &4810286216205750784
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014346544255978545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1.0037796, z: 1}
+  m_Center: {x: 0.50000006, y: 0.5018898, z: 0.5}
+--- !u!114 &2097652403022609445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014346544255978545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90f49375d262e64d9e0acc2e55c9096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2024720624409023800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,7 +90,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: a6fd7a951a47c0b488ef486366810d33,
         type: 3}
       propertyPath: m_Name
-      value: blocco_verde Variant
+      value: blocco_verde
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: a6fd7a951a47c0b488ef486366810d33,
         type: 3}
@@ -77,5 +102,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: a6fd7a951a47c0b488ef486366810d33,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6fd7a951a47c0b488ef486366810d33, type: 3}
+--- !u!1 &8014346544255978545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a6fd7a951a47c0b488ef486366810d33,
+    type: 3}
+  m_PrefabInstance: {fileID: 2024720624409023800}
+  m_PrefabAsset: {fileID: 0}

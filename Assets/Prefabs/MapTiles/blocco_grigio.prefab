@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &-301544818804243975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3089689424680891930}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1.0037796, z: 1}
+  m_Center: {x: 0.50000006, y: 0.5018898, z: 0.5}
+--- !u!114 &2526930766497948976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3089689424680891930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90f49375d262e64d9e0acc2e55c9096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6467491492904431379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,12 +90,23 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: bd23673b687c78f49a3a4fe284cf8279,
         type: 3}
       propertyPath: m_Name
-      value: blocco_grigio Variant
+      value: blocco_grigio
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: bd23673b687c78f49a3a4fe284cf8279,
         type: 3}
       propertyPath: m_TagString
       value: ParkingArea
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: bd23673b687c78f49a3a4fe284cf8279,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd23673b687c78f49a3a4fe284cf8279, type: 3}
+--- !u!1 &3089689424680891930 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: bd23673b687c78f49a3a4fe284cf8279,
+    type: 3}
+  m_PrefabInstance: {fileID: 6467491492904431379}
+  m_PrefabAsset: {fileID: 0}

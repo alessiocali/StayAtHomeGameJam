@@ -8,7 +8,14 @@ public class Player : Character
     private bool HasCertification;
     private bool HasToiletPaper;
 
-    public bool ItsMyTurn { get; private set; } = false;
+    public override void OnOtherOccupantCollided(Occupant other)
+    {
+        base.OnOtherOccupantCollided(other);
+        if (other is Character otherCharacter)
+        {
+            IncreaseContagionLevel(otherCharacter.ContagionLevelOnPlayerBump);
+        }
+    }
 
     protected override UpdateTurnResult UpdateTurnInternal()
     {
@@ -35,4 +42,12 @@ public class Player : Character
         //Start An Action (move or whatever)
     }
 
+    public void IncreaseContagionLevel(float amount)
+    {
+        ContagionLevel += amount;
+        if (ContagionLevel >= 1)
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
 }

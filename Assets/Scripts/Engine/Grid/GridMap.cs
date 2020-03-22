@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using Random = UnityEngine.Random;
 
 public class GridMap : MonoBehaviour
 {
@@ -37,18 +39,26 @@ public class GridMap : MonoBehaviour
             for (int Y = -IndexOffsetY; Y < IndexOffsetY; ++Y)
             {
                 Vector3 NextVector = Originator.transform.forward * X + Originator.transform.right * Y;
-                GameObject Current3Cube = Instantiate(WalkableCube[0], NextVector, Quaternion.Euler(0, GridRotation, 0), transform);
-                Current3Cube.name = "Tile_" + (X + IndexOffsetX) + "_" + (Y + IndexOffsetY);
+                GameObject CurrentCube = Instantiate(WalkableCube[0], NextVector, Quaternion.Euler(0, GridRotation, 0), transform);
+                CurrentCube.name = "Tile_" + (X + IndexOffsetX) + "_" + (Y + IndexOffsetY);
 
-                GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X + IndexOffsetX, Y + IndexOffsetY);
-                GridTile Tile = new GridTile(Current3Cube, CurrentIndex);
-                Tile.isWalkable = true;
-                Grid.Add(CurrentIndex, Tile);
+                GridTile.TileIndex CurrentIndex = new GridTile.TileIndex(X+IndexOffsetX, Y+IndexOffsetY);
+                //GridTile Tile = new GridTile(Current3Cube, CurrentIndex);
+                //GridTile Tile = Current3Cube.AddComponent<GridTile>();
+                GridTile Tile = CurrentCube.GetComponent<GridTile>();
+                try
+                {
+                    Tile.InitializeGridTile(CurrentCube, CurrentIndex);
+                    Tile.isWalkable = true;
+                    Grid.Add(CurrentIndex, Tile);
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogError("Missing GridTile element on prefab");
+                }
             }
         }
-        //GenerateRandomMap(Originator);
-
-        GameObject.Destroy(Originator);
+        Destroy(Originator);
     }
 
     public struct SpawnZone
