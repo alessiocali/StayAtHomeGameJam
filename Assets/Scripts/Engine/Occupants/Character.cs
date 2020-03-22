@@ -70,6 +70,11 @@ public abstract class Character : Occupant
             AudioManager.Instance.PlayCharacterBump();
             yield return PlayAnimation("Bump");
         }
+        else if (targetTile.isBuilding)
+        {
+            yield return PlayAnimation("GetInBuilding");
+            CurrentTileIndex = tileIndex;
+        }
         else
         {
             yield return PlayAnimation("Move");

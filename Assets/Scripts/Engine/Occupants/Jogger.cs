@@ -71,10 +71,12 @@ public class Jogger : Character
     {
         GridTile.TileIndex indexFacing = new GridTile.TileIndex(CurrentTileIndex.X + CurrentDirection.X, CurrentTileIndex.Y + CurrentDirection.Y);
         GridTile tileFacing = GameManager.Instance.GridMap.GetTileAt(indexFacing);
-        if (tileFacing.isWalkable)
+        
+        if (tileFacing && tileFacing.isWalkable)
         {
             return tileFacing;
         }
+
         return null;
     }
 

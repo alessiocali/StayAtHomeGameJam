@@ -49,7 +49,6 @@ public class GameManager : Singleton<GameManager>
 
         GameObject PrefabObject = Instantiate(prefab, tileCenter, Quaternion.identity);
         PrefabObject.GetComponent<Occupant>().CurrentTileIndex = index;
-        PrefabObject.transform.localScale /= 2;
 
         PendingSpawnedObjectsToAdd.Add(PrefabObject);
     }
