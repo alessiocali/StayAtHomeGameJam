@@ -63,12 +63,9 @@ public abstract class Character : Occupant
             }
         }
 
-        if (targetTile.Occupant != null)
-        {
-            OnOtherOccupantCollided(targetTile.Occupant);
-        }
+        targetTile.OnOccupantCollided(this);
 
-        if (targetTile.Occupant is Character)
+        if (targetTile.HasCharacterOccupant())
         {
             yield return PlayAnimation("Bump");
         }

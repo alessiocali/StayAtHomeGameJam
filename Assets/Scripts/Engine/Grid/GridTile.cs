@@ -26,9 +26,39 @@ public class GridTile:MonoBehaviour
 
     public GameObject TileObject { get; private set; } = null;
 
-    public Occupant Occupant { get; set; } = null;
+    private List<Occupant> Occupants = new List<Occupant>();
     
-  
+    public bool HasOccupants()
+    {
+        return Occupants.Count > 0;
+    }
+
+    public bool HasCharacterOccupant()
+    {
+        return Occupants.Find(occupant => occupant is Character) != null;
+    }
+
+    public void AddOccupant(Occupant occupant)
+    {
+        if (!Occupants.Contains(occupant))
+        {
+            Occupants.Add(occupant);
+        }
+    }
+
+    public void RemoveOccupant(Occupant occupant)
+    {
+        Occupants.Remove(occupant);
+    }
+
+    public void OnOccupantCollided(Occupant other)
+    {
+        foreach (Occupant occupant in Occupants)
+        {
+            occupant.OnOtherOccupantCollided(other);
+        }
+    }
+
     public void InitializeGridTile (GameObject InTileObject, TileIndex InIndex)
     {
         TileObject= InTileObject;

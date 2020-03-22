@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Occupant : MonoBehaviour
 {
+    private bool IsShuttingDown = false;
+
     public enum UpdateTurnResult
     {
         Completed, 
@@ -22,14 +24,11 @@ public abstract class Occupant : MonoBehaviour
         set
         {
             GridTile previousTile = GetCurrentTile();
-            if (previousTile != null)
-            {
-                previousTile.Occupant = null;
-            }
+            previousTile.RemoveOccupant(this);
 
             TileIndex = value;
             GridTile newTile = GetCurrentTile();
-            newTile.Occupant = this;
+            newTile.AddOccupant(this);
             transform.position = newTile.GetOccupantPosition();
         }
     }
@@ -43,15 +42,16 @@ public abstract class Occupant : MonoBehaviour
     public virtual void OnOtherOccupantCollided(Occupant occupant)
     { }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnApplicationQuit()
     {
-        
+        IsShuttingDown = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        if (!IsShuttingDown)
+        {
+            GetCurrentTile().RemoveOccupant(this);
+        }
     }
 }

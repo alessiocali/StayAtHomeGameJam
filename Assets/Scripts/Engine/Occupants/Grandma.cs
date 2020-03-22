@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Grandma : Character
 {
     [SerializeField]
     private GameObject sneezePrefab;
+
+   // public AudioClip sneezeSound;
+
+    private AudioSource source;
 
     private enum GrandmaChoices
     {
@@ -17,7 +22,7 @@ public class Grandma : Character
 
     private int nextAction = 0;
     //private readonly int enumLength = Enum.GetNames(typeof(GrandmaChoices)).Length;
-    private readonly int enumLength = 2;
+    private readonly int enumLength = 3;
 
     protected override UpdateTurnResult UpdateTurnInternal() {
 
@@ -37,8 +42,8 @@ public class Grandma : Character
                 break;
 
             case (int)GrandmaChoices.Sneezing:
-                //TODO: spawn
-                GameManager.Instance.SpawnOccupantObjectOnTile(sneezePrefab, CurrentTileIndex);
+                SpawnVirusClouds();
+                source.Play();
                 break;
         
         
@@ -53,5 +58,28 @@ public class Grandma : Character
             return UpdateTurnResult.Completed;
         }
         
+    }
+
+    private void SpawnVirusClouds()
+    {
+        if (sneezePrefab == null)
+        {
+            return;
+        }
+
+        foreach (GridTile tile in GameManager.Instance.GridMap.GetTilesAround(CurrentTileIndex))
+        {
+            if (!tile.isWalkable || tile.HasOccupants())
+            {
+                continue;
+            }
+
+            GameManager.Instance.SpawnOccupantObjectOnTile(sneezePrefab, tile.Index);
+        }
+    }
+
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
     }
 }
