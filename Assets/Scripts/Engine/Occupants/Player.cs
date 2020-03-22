@@ -12,6 +12,28 @@ public class Player : Character
 
     private bool ItsMyTurn = false;
 
+    public bool TestHasCertification()
+    {
+        return HasCertification;
+    }
+
+    public void RemoveCertification()
+    {
+        HasCertification = false;
+        GameManager.Instance.SetCertificationHUDActive(false);
+    }
+
+    public void AddCertification()
+    {
+        HasCertification = true;
+        GameManager.Instance.SetCertificationHUDActive(true);
+    }
+
+    public void GoHome()
+    {
+        CurrentTileIndex = GameManager.Instance.GridMap.GetHomeTileIndex();
+    }
+
     private void OnEnable()
     {
         InputManager.OnClicked += OnTileClicked;
@@ -58,7 +80,11 @@ public class Player : Character
         base.OnOtherOccupantCollided(other);
         if (other is Character)
         {
-            IncreaseContagionLevel();
+            Character otherCharacter = other as Character;
+            if (otherCharacter.IsInfected)
+            {
+                IncreaseContagionLevel();
+            }
         }
     }
 

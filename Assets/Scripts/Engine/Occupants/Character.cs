@@ -5,12 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public abstract class Character : Occupant
 {
-   // [SerializeField]
-   // [Range(0,1)]
-   // public float ContagionLevelOnPlayerBump = 0.3f;
+    // [SerializeField]
+    // [Range(0,1)]
+    // public float ContagionLevelOnPlayerBump = 0.3f;
 
+    protected bool IsPerformingCustomAction = false;
     protected bool IsMoving = false;
     protected bool HasStartedMoving = false;
+
+    public bool IsInfected = true;
 
     public sealed override UpdateTurnResult UpdateTurn()
     {
@@ -28,7 +31,7 @@ public abstract class Character : Occupant
 
     public override void OnOtherOccupantCollided(Occupant other)
     {
-        if (other is Player otherPlayer)
+        if (IsInfected && other is Player otherPlayer)
         {
             otherPlayer.IncreaseContagionLevel();
         }
@@ -90,7 +93,7 @@ public abstract class Character : Occupant
         IsMoving = false;
     }
 
-    private IEnumerator PlayAnimation(string animationTrigger)
+    protected IEnumerator PlayAnimation(string animationTrigger)
     {
         Animator animator = GetComponent<Animator>();
         animator.applyRootMotion = true;
@@ -108,7 +111,7 @@ public abstract class Character : Occupant
 
     private void OnAnimatorMove()
     {
-        if (IsMoving)
+        if (IsMoving || IsPerformingCustomAction)
         {
             transform.position = GetComponent<Animator>().rootPosition;
         }

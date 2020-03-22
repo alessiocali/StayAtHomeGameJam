@@ -51,6 +51,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void SetCertificationHUDActive(bool active)
+    {
+        var go = GameObject.Find("Autocert");
+        var image = go.GetComponent<Image>();
+        if (image != null)
+        {
+            image.enabled = active;
+        }
+    }
+
     public void SetMaskHUDActive(bool active, int contagionLevel)
     {
         var go = GameObject.Find("Mask" + contagionLevel.ToString());
@@ -76,7 +86,7 @@ public class GameManager : Singleton<GameManager>
         GridTile tile = GridMap.GetTileAt(index);
         Vector3 tileCenter = tile.GetOccupantPosition();
 
-        GameObject PrefabObject = Instantiate(prefab, tileCenter, Quaternion.identity);
+        GameObject PrefabObject = Instantiate(prefab, tileCenter, prefab.transform.rotation);
         PrefabObject.GetComponent<Occupant>().CurrentTileIndex = index;
 
         PendingSpawnedObjectsToAdd.Add(PrefabObject);
@@ -86,6 +96,7 @@ public class GameManager : Singleton<GameManager>
     {
         // So sorry :(
         SetToiletPaperHUDActive(false);
+        SetCertificationHUDActive(false);
         SetMaskHUDActive(false, 1);
         SetMaskHUDActive(false, 2);
         SetMaskHUDActive(false, 3);
