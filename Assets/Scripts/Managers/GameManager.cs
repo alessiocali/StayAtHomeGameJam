@@ -47,7 +47,7 @@ public class GameManager : Singleton<GameManager>
         GridTile tile = GridMap.GetTileAt(index);
         Vector3 tileCenter = tile.GetOccupantPosition();
 
-        GameObject PrefabObject = Instantiate(prefab, tileCenter, Quaternion.Euler(0, -45, 0));
+        GameObject PrefabObject = Instantiate(prefab, tileCenter, Quaternion.identity);
         PrefabObject.GetComponent<Occupant>().CurrentTileIndex = index;
         PrefabObject.transform.localScale /= 2;
 
