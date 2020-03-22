@@ -95,12 +95,27 @@ public class GridMap : MonoBehaviour
         {
             return Vector3.zero;
         }
-
-        Vector3 Direction = Vector3.Normalize(Desider.TileObject.transform.position - Current.TileObject.transform.position);
+        
+        Vector3 Direction = Desider.TileObject.transform.position - Current.TileObject.transform.position;
         return Direction;
     }
     
-    public GridTile.TileIndex GetRandomTileIndex()
+    public GridTile.TileIndex GetRandomTileIndex(bool isOccupied, bool isWalkable)
+    {
+        while (true)
+        {
+            int RandomX = Random.Range(0, GRID_WIDTH);
+            int RandomY = Random.Range(0, GRID_HEIGHT);
+
+            GridTile.TileIndex RandomIndex = new GridTile.TileIndex(RandomX, RandomY);
+            if (Grid[RandomIndex].HasOccupants() == isOccupied && Grid[RandomIndex].isWalkable == isWalkable)
+            {
+                return RandomIndex;
+            }
+        }
+    }
+
+    public GridTile.TileIndex GetRandomTileIndex ()
     {
         int RandomX = Random.Range(0, GRID_WIDTH);
         int RandomY = Random.Range(0, GRID_HEIGHT);

@@ -69,7 +69,8 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (GameObject objectToSpawn in OccupantsToSpawnOnStart)
         {
-            SpawnOccupantObjectOnTile(objectToSpawn, GridMap.GetRandomTileIndex());
+            //Get tile without occupants and that's walkable
+            SpawnOccupantObjectOnTile(objectToSpawn, GridMap.GetRandomTileIndex(false,true));
         }
     }
 
