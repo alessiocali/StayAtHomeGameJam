@@ -42,8 +42,7 @@ public class Grandma : Character
                 break;
 
             case (int)GrandmaChoices.Sneezing:
-                //TODO: spawn
-                GameManager.Instance.SpawnOccupantObjectOnTile(sneezePrefab, CurrentTileIndex);
+                SpawnVirusClouds();
                 source.Play();
                 break;
         
@@ -59,6 +58,24 @@ public class Grandma : Character
             return UpdateTurnResult.Completed;
         }
         
+    }
+
+    private void SpawnVirusClouds()
+    {
+        if (sneezePrefab == null)
+        {
+            return;
+        }
+
+        foreach (GridTile tile in GameManager.Instance.GridMap.GetTilesAround(CurrentTileIndex))
+        {
+            if (!tile.isWalkable || tile.HasOccupants())
+            {
+                continue;
+            }
+
+            GameManager.Instance.SpawnOccupantObjectOnTile(sneezePrefab, tile.Index);
+        }
     }
 
     private void Awake()
