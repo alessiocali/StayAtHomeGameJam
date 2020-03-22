@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ContagionLevelOnPlayerBump: 0.3
-  sneezePrefab: {fileID: 4999612307239438187, guid: 96f9dc1f95b9d5a4793043e57d18d6a6,
+  sneezePrefab: {fileID: 1253122874872384, guid: f68c55851f485c240952b4b45648adda,
     type: 3}
 --- !u!95 &-4449202435033687892
 Animator:
