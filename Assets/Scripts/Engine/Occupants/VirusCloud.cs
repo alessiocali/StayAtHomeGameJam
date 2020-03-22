@@ -5,7 +5,7 @@ using UnityEngine;
 public class VirusCloud : ImmovableObject
 {
     [Range(0, 1)]
-    public float ContagionLevel;
+    public float ContagionLevel = 0.3f;
 
     public int NumberOfTurnsAlive = 3;
 

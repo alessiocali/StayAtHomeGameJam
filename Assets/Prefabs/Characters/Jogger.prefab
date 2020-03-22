@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2375159501291419501}
   - component: {fileID: 8343705079992650644}
   - component: {fileID: 2029552339374177806}
+  - component: {fileID: -7372809733790885377}
   m_Layer: 0
   m_Name: Jogger
   m_TagString: Untagged
@@ -92,4 +93,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b383d57cf9c98ce4e9396eb687040016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ContagionLevelOnPlayerBump: 0.3
   TurnsBeforeChangingDirection: 4
+  VirusPrefab: {fileID: 0}
+--- !u!95 &-7372809733790885377
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7779437964564086600}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99ea7e9a91ce1b84780e5310cb88a3eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

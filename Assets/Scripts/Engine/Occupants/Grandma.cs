@@ -29,9 +29,6 @@ public class Grandma : Character
                     GridTile nextTile = tilesList[UnityEngine.Random.Range(0, tilesList.Count)];
                     if (!HasStartedMoving)
                         MoveToTile(nextTile.Index);
-
-                    //TODO: LookAt rotation given by Vector3 GameManager.instance.GetRotation (currentTile, desiredTile)
-                    transform.LookAt(Vector3.zero);
                 }
 
                 break;
