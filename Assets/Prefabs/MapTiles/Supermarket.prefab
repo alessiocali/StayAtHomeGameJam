@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7478355771263109960}
   - component: {fileID: 1146215300631476257}
   - component: {fileID: 1675559673154051545}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Supermarket
-  m_TagString: Untagged
+  m_TagString: SuperMarket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
