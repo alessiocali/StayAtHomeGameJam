@@ -29,15 +29,9 @@ public class GridTile:MonoBehaviour
   
     public void InitializeGridTile (GameObject InTileObject, TileIndex InIndex)
     {
-<<<<<<< HEAD
         TileObject= InTileObject;
         WordPosition = InTileObject.transform.position + InTileObject.transform.forward * 0.5f + InTileObject.transform.right * 0.5f;
         WordPosition += Vector3.up; 
-=======
-        TileObject = InTileObject;
-        WordPosition = InTileObject.transform.localPosition + InTileObject.transform.forward * 0.5f + InTileObject.transform.right * 0.5f;
-        WordPosition += Vector3.up;
->>>>>>> refs/remotes/origin/master
         Index = InIndex;
     }
 
