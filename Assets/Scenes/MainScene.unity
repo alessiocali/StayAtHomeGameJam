@@ -280,7 +280,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OccupantsToSpawnOnStart:
-  - {fileID: 7779437964564086600, guid: 6f4ae1a6340cd334a90c23033bbf46f4, type: 3}
+  - {fileID: 6981593912737080337, guid: 485346729a9e9e24997a388502d452bf, type: 3}
+  - {fileID: 7779437964564086600, guid: 7089fc2f065568648b9a6bc77740f62a, type: 3}
+  - {fileID: 9158390021816408588, guid: 2f784cb68d0df2247871d9d44adf4017, type: 3}
 --- !u!4 &111260236
 Transform:
   m_ObjectHideFlags: 0
@@ -295,6 +297,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &182976347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 182976348}
+  - component: {fileID: 182976349}
+  m_Layer: 0
+  m_Name: InputSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &182976348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182976347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 685.86, y: -2257.0732, z: -2959.0015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &182976349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182976347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4f6dcf9be561f4eb33b2e268683e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &428648127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,8 +1242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49153d6df135ff4f9a8c5c0c7288eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NotWalkableCube: []
-  WalkableCube: []
+  NotWalkableCube:
+  - {fileID: 8139095346231213116, guid: 82fdb4c1095e72d43ae38075517380a3, type: 3}
+  WalkableCube:
+  - {fileID: 8014346544255978545, guid: 3f69853182a5edb4f9e1de89e8b0f2d0, type: 3}
   GridRotation: -45
 --- !u!4 &1701556632
 Transform:
