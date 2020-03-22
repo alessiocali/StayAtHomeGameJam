@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -102,6 +103,12 @@ public class Player : Character
         if (currentTile.CompareTag("SuperMarket"))
         {
             HasToiletPaper = true;
+            var go = GameObject.Find("Toilet Paper");
+            var image = go.GetComponent<Image>();
+            if (image != null)
+            {
+                image.enabled = true;
+            }
             return;
         }
     }
