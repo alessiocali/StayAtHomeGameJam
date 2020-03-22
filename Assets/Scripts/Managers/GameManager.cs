@@ -41,7 +41,7 @@ public class GameManager : Singleton<GameManager>
         GridTile tile = GridMap.GetTileAt(index);
         Vector3 tileCenter = tile.GetOccupantPosition();
 
-        GameObject PrefabObject = Instantiate(prefab, tileCenter, Quaternion.Euler(0, -45, 0));
+        GameObject PrefabObject = Instantiate(prefab, tileCenter, Quaternion.identity);
         PrefabObject.GetComponent<Occupant>().CurrentTileIndex = index;
         PrefabObject.transform.localScale /= 2;
 
@@ -63,7 +63,8 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (GameObject objectToSpawn in OccupantsToSpawnOnStart)
         {
-            SpawnOccupantObjectOnTile(objectToSpawn, GridMap.GetRandomTileIndex());
+            //Get tile without occupants and that's walkable
+            SpawnOccupantObjectOnTile(objectToSpawn, GridMap.GetRandomTileIndex(false,true));
         }
     }
 

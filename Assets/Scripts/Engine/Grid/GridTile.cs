@@ -32,6 +32,14 @@ public class GridTile:MonoBehaviour
                 if (tile.HasPlayerOccupant())
                 {
                     GetComponent<Renderer>().material.shader = Shader.Find("Custom/Glow");
+
+                    if (transform.childCount > 0)
+                    {
+                        foreach (Renderer render in GetComponentsInChildren<Renderer>(false))
+                        {
+                            render.material.shader = Shader.Find("Custom/Glow");
+                        }
+                    }
                 }
             }            
         }
@@ -42,6 +50,13 @@ public class GridTile:MonoBehaviour
     {
         Debug.Log("On mouse over Tile: " + Index.X + " " + Index.Y);
         GetComponent<Renderer>().material.shader = Shader.Find("Standard");
+        if (transform.childCount > 0)
+        {
+            foreach (Renderer render in GetComponentsInChildren<Renderer>(false))
+            {
+                render.material.shader = Shader.Find("Standard");
+            }
+        }
     }
     public TileIndex Index { get; private set; }
     private Vector3 WordPosition;
