@@ -371,8 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49153d6df135ff4f9a8c5c0c7288eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapsList: []
-  GridRotation: -45
+  MapsList:
+  - {fileID: 2574442448273278483, guid: ef01737c4cd14d44a9e8d970c2f1ff7c, type: 3}
 --- !u!4 &1701556632
 Transform:
   m_ObjectHideFlags: 0

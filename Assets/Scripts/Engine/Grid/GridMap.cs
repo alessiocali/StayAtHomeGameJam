@@ -40,7 +40,7 @@ public class GridMap : MonoBehaviour
             Vector3 Location = tile.transform.position;
 
             int zOffset = 0;
-            if (!tile.transform.rotation.Equals(Quaternion.identity))
+            if (Mathf.Approximately(tile.transform.rotation.eulerAngles.y,90f))
             {
                 zOffset++;
             }
@@ -51,8 +51,15 @@ public class GridMap : MonoBehaviour
             try
             {
                 Tile.InitializeGridTile(tile.gameObject, CurrentIndex);
-                Grid.Add(CurrentIndex, Tile);
-                tile.name = "Tile_" + Mathf.CeilToInt(Location.x + IndexOffsetX) + "_" + Mathf.CeilToInt(Location.y + IndexOffsetY);
+                if (Grid.ContainsKey(CurrentIndex))
+                {
+                    Debug.Log(Tile.name + " " + Grid[CurrentIndex].name);
+                }
+                else
+                {
+                    Grid.Add(CurrentIndex, Tile);
+                    tile.name = "Tile_" + CurrentIndex.X + "_" + CurrentIndex.Y;
+                }
             }
             catch (NullReferenceException)
             {
