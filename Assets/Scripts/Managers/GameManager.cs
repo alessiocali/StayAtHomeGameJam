@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
     private List<GameObject> RuntimeOccupantObjects = new List<GameObject>();
     private List<GameObject> PendingSpawnedObjectsToAdd = new List<GameObject>();
 
+    private bool IsTurnActive = false;
     private bool IsGameDone = false;
 
     public void GameWon()
@@ -94,7 +95,6 @@ public class GameManager : Singleton<GameManager>
 
     private void DisableHUD()
     {
-        // So sorry :(
         SetToiletPaperHUDActive(false);
         SetCertificationHUDActive(false);
         SetMaskHUDActive(false, 1);
@@ -132,25 +132,28 @@ public class GameManager : Singleton<GameManager>
             CurrentOccupantToUpdateIdx = 0;
         }
 
-        while (CurrentOccupantToUpdateIdx != RuntimeOccupantObjects.Count)
+        GameObject currentOccupant = RuntimeOccupantObjects[CurrentOccupantToUpdateIdx];
+        StartCoroutine("ExecuteTurn", currentOccupant);
+    }
+
+    public IEnumerator ExecuteTurn(GameObject occupantToUpdate)
+    {
+        IsTurnActive = true;
+
+        if (occupantToUpdate != null)
         {
-            GameObject currentOccupant = RuntimeOccupantObjects[CurrentOccupantToUpdateIdx];
-            if (currentOccupant != null)
-            {
-                Occupant.UpdateTurnResult result = currentOccupant.GetComponent<Occupant>().UpdateTurn();
-
-                if (result == Occupant.UpdateTurnResult.Pending)
-                {
-                    return;
-                }
-            }
-
-            UpdateRuntimeOccupants();
-            CurrentOccupantToUpdateIdx++;
+            Occupant occupantComponentToUpdate = occupantToUpdate.GetComponent<Occupant>();
+            yield return occupantComponentToUpdate.UpdateTurn();
         }
 
-        // Global turn has ended
-        CurrentOccupantToUpdateIdx = -1;
+        IsTurnActive = false;
+        UpdateRuntimeOccupants();
+        CurrentOccupantToUpdateIdx++;
+
+        if (CurrentOccupantToUpdateIdx == RuntimeOccupantObjects.Count)
+        {
+            CurrentOccupantToUpdateIdx = -1;
+        }
     }
 
     private void Awake()
@@ -163,7 +166,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        if (!IsGameDone)
+        if (!IsGameDone && !IsTurnActive)
         {
             UpdateTurn();
         }

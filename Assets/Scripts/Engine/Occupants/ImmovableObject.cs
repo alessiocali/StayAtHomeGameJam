@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ImmovableObject : Occupant
 {
-    public override UpdateTurnResult UpdateTurn()
+    public override IEnumerator UpdateTurn()
     {
-        return UpdateTurnResult.Completed;
+        yield return null;
     }
 }

@@ -6,12 +6,6 @@ public abstract class Occupant : MonoBehaviour
 {
     private bool IsShuttingDown = false;
 
-    public enum UpdateTurnResult
-    {
-        Completed, 
-        Pending
-    }
-
     private GridTile.TileIndex TileIndex;
 
     public GridTile.TileIndex CurrentTileIndex 
@@ -38,7 +32,7 @@ public abstract class Occupant : MonoBehaviour
         return GameManager.Instance.GridMap.GetTileAt(CurrentTileIndex);
     }
 
-    public abstract UpdateTurnResult UpdateTurn();
+    public abstract IEnumerator UpdateTurn();
     public virtual void OnOtherOccupantCollided(Occupant occupant)
     { }
 

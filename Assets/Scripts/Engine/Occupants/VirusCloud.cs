@@ -9,7 +9,7 @@ public class VirusCloud : ImmovableObject
 
     public int NumberOfTurnsAlive = 3;
 
-    public override UpdateTurnResult UpdateTurn()
+    public override IEnumerator UpdateTurn()
     {
         if (NumberOfTurnsAlive == 0)
         {
@@ -17,7 +17,7 @@ public class VirusCloud : ImmovableObject
         }
 
         NumberOfTurnsAlive--;
-        return UpdateTurnResult.Completed;
+        yield return null;
     }
 
     public override void OnOtherOccupantCollided(Occupant occupant)

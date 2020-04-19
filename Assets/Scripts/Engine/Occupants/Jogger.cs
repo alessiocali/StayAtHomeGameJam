@@ -24,22 +24,17 @@ public class Jogger : Character
 
     private DesiredDirection CurrentDirection { get { return Directions[CurrentDirectionIndex]; } }
 
-    protected override UpdateTurnResult UpdateTurnInternal()
+    public override IEnumerator UpdateTurn()
     {
-        if (!HasStartedMoving)
+        UpdateCurrentDirection();
+
+        GridTile.TileIndex nextTile = GetNextTileIndex();
+        if (nextTile.X != CurrentTileIndex.X || nextTile.Y != CurrentTileIndex.Y)
         {
-            UpdateCurrentDirection();
-
-            GridTile.TileIndex nextTile = GetNextTileIndex();
-            if (nextTile.X != CurrentTileIndex.X || nextTile.Y != CurrentTileIndex.Y)
-            {
-                SpawnVirusOnCurrentTile();
-            }
-
-            MoveToTile(nextTile);
+            SpawnVirusOnCurrentTile();
         }
 
-        return IsMoving ? UpdateTurnResult.Pending : UpdateTurnResult.Completed;
+        yield return MoveToTile(nextTile);
     }
 
     private void SpawnVirusOnCurrentTile()

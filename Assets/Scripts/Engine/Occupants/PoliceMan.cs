@@ -6,9 +6,6 @@ public class PoliceMan : Character
 {
     public int TurnsBeforeChangingDirection = 4;
 
-    private bool HasStartedPunishingPlayer = false;
-    private bool IsPunishingPlayer = false;
-
     private struct DesiredDirection
     {
         public DesiredDirection(int x, int y)
@@ -23,39 +20,10 @@ public class PoliceMan : Character
     private DesiredDirection CurrentDirection;
     private int TurnsInCurrentDirection = 0;
 
-    protected override UpdateTurnResult UpdateTurnInternal()
+    public override IEnumerator UpdateTurn()
     {
-        // Forgive me for this madness, I have no time to fix the implementation right now.
-        // @agcali's fault.
-
-        if (IsPunishingPlayer)
-        {
-            return UpdateTurnResult.Pending;
-        }
-
-        if (!HasStartedMoving)
-        {
-            MoveToTile(GetTileForward());
-        }
-
-        if (!IsMoving)
-        {
-            if (!HasStartedPunishingPlayer)
-            {
-                HasStartedPunishingPlayer = true;
-                CheckForPlayerAround(); 
-            }
-
-            if (!IsPunishingPlayer)
-            {
-                HasStartedPunishingPlayer = false;
-                return UpdateTurnResult.Completed;
-            }
-            
-            return UpdateTurnResult.Pending;
-        }
-
-        return UpdateTurnResult.Pending;
+        yield return MoveToTile(GetTileForward());
+        yield return CheckForPlayerAround();
     }
 
     private GridTile.TileIndex GetTileForward()
@@ -79,7 +47,7 @@ public class PoliceMan : Character
         return CurrentTileIndex;
     }
 
-    private void CheckForPlayerAround()
+    private IEnumerator CheckForPlayerAround()
     {
         List<GridTile> tilesAround = GameManager.Instance.GridMap.GetTilesAround(CurrentTileIndex);
         foreach (GridTile tile in tilesAround)
@@ -87,17 +55,13 @@ public class PoliceMan : Character
             Player playerOccupant = tile.GetPlayerOccupant();
             if (playerOccupant)
             {
-                StartCoroutine("StartPunishingPlayer", playerOccupant);
-                return;
+                yield return StartPunishingPlayer(playerOccupant);
             }
         }
     }
 
     public IEnumerator StartPunishingPlayer(Player player)
     {
-        IsPunishingPlayer = true;
-        IsPerformingCustomAction = true;
-
         yield return PlayAnimation("Angry");
 
         if (player.TestHasCertification())
@@ -108,9 +72,6 @@ public class PoliceMan : Character
         {
             player.GoHome();
         }
-        
-        IsPunishingPlayer = false;
-        IsPerformingCustomAction = false;
     }
 
     private void UpdateDirection()

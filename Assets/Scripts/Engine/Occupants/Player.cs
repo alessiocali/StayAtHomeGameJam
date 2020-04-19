@@ -11,6 +11,8 @@ public class Player : Character
     private bool HasToiletPaper;
 
     private bool ItsMyTurn = false;
+    private bool HasValidInput = false;
+    private GridTile.TileIndex DesiredTileIndex;
 
     public bool TestHasCertification()
     {
@@ -46,12 +48,12 @@ public class Player : Character
 
     public bool IsWaitingForInput()
     {
-        return ItsMyTurn && !HasStartedMoving;
+        return ItsMyTurn && !HasValidInput;
     }
 
     public void OnTileClicked(string tileName, GridTile.TileIndex tileIndex)
     {
-        if (!ItsMyTurn || HasStartedMoving)
+        if (!ItsMyTurn || HasValidInput)
         {
             return;
         }
@@ -72,7 +74,8 @@ public class Player : Character
             return;
         }
 
-        MoveToTile(tileIndex);
+        HasValidInput = true;
+        DesiredTileIndex = targetTile.Index;
     }
 
     public override void OnOtherOccupantCollided(Occupant other)
@@ -88,27 +91,20 @@ public class Player : Character
         }
     }
 
-    protected override UpdateTurnResult UpdateTurnInternal()
+    public override IEnumerator UpdateTurn()
     {
-        if (HasStartedMoving)
-        {
-            return UpdateMovement();
-        }
-
         ItsMyTurn = true;
-        return UpdateTurnResult.Pending;
-    }
 
-    private UpdateTurnResult UpdateMovement()
-    {
-        if (!IsMoving)
+        while (IsWaitingForInput())
         {
-            CheckBuildingEffect();
-            ItsMyTurn = false;
-            return UpdateTurnResult.Completed;
+            yield return new WaitForFixedUpdate();
         }
 
-        return UpdateTurnResult.Pending;
+        yield return MoveToTile(DesiredTileIndex);
+        CheckBuildingEffect();
+
+        HasValidInput = false;
+        ItsMyTurn = false;
     }
 
     private void CheckBuildingEffect()

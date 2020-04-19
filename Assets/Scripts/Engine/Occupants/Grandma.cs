@@ -10,49 +10,47 @@ public class Grandma : Character
 
     private enum GrandmaChoices
     {
-        Moving,
-        Waiting,
-        Sneezing
+        Moving = 0,
+        Waiting = 1,
+        Sneezing = 2,
+        COUNT = 3
     };
 
-    private int nextAction = 0;
-    //private readonly int enumLength = Enum.GetNames(typeof(GrandmaChoices)).Length;
-    private readonly int enumLength = 3;
+    private GrandmaChoices nextAction = GrandmaChoices.Moving;
 
-    protected override UpdateTurnResult UpdateTurnInternal() {
-
-        switch (nextAction) {
-            case (int)GrandmaChoices.Moving:
+    public override IEnumerator UpdateTurn()
+    {
+        switch (nextAction)
+        {
+            case GrandmaChoices.Moving:
                 List<GridTile> tilesList = GameManager.Instance.GridMap.GetCardinalAndWalkableTilesAround(CurrentTileIndex);
+                
                 if (tilesList.Count > 0)
                 {
                     GridTile nextTile = tilesList[UnityEngine.Random.Range(0, tilesList.Count)];
-                    if (!HasStartedMoving)
-                        MoveToTile(nextTile.Index);
+                    yield return MoveToTile(nextTile.Index);
                 }
 
                 break;
 
-            case (int)GrandmaChoices.Waiting:
+            case GrandmaChoices.Waiting:
                 break;
 
-            case (int)GrandmaChoices.Sneezing:
+            case GrandmaChoices.Sneezing:
                 SpawnVirusClouds();
                 AudioManager.Instance.PlayGrandmaCough();
                 break;
-        
-        
         }
 
-        if (IsMoving)
-        {
-            return UpdateTurnResult.Pending;
-        }
-        else {
-            nextAction = (nextAction + 1) % enumLength;
-            return UpdateTurnResult.Completed;
-        }
-        
+        SetNextChoice();
+    }
+
+    private void SetNextChoice()
+    {
+        int nextActionIdx = (int)nextAction;
+        const int actionCount = (int)GrandmaChoices.COUNT;
+
+        nextAction = (GrandmaChoices)((nextActionIdx + 1) % actionCount);
     }
 
     private void SpawnVirusClouds()
